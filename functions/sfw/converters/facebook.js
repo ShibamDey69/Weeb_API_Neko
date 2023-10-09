@@ -16,17 +16,17 @@ const facebook = async (req, res) => {
     let description = response2.description
     let urls = [
       {
-        quality : "720p (HD)",
-        url:response2.urls[0].url
+        quality: "720p (HD)",
+        url: response2.urls[0].url
       },
       {
-        quality : "360p",
-        url:response2.urls[1].url
+        quality: "360p",
+        url: response2.urls[1].url
       }
     ]
     let response = {
-      description:description,
-      urls:urls
+      description: description,
+      urls: urls
     }
     return await res.status(200).send({
       creator: global.creator,

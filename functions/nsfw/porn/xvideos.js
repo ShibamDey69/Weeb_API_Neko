@@ -45,7 +45,7 @@ const xvideosMultiple = async (req, res) => {
       reason: "Please Provide A Search Term!!"
     })
     let response = await xv.searchVideo({
-      proxy:true,
+      proxy: true,
       search: text,
       sort: "relevance",
       filterDuration: "3-10min"
