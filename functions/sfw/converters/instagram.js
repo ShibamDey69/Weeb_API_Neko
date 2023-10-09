@@ -13,6 +13,11 @@ const instagram = async (req, res) => {
       reason: "Please Provide A Instagram URL!!"
     })
     let response = await neko.instagram(text)
+    if (response == `[]`) return res.status(400).send({
+      status: 400,
+      response: "failed!!",
+      reason: "Please Provide A Valid Instagram URL!!"
+    })
     return await res.status(200).send({
       creator: global.creator,
       response: "successful!!",
