@@ -8,10 +8,8 @@ const gifs = async(req,res) => {
       response:"failed",
       reason:"Please Provide Gif Action!"
     })
-    
-    const resp = await gifScrape(gif,'sfw/')
+    const resp = await gifScrape(gif,'nsfw/')
     const random = resp[Math.floor(Math.random() * resp.length)]
-    
     let response = {
       gif:random
     }
@@ -21,7 +19,6 @@ const gifs = async(req,res) => {
       data:response
     })
   } catch (error) {
-    console.log(error);
     await res.status(500).send({
       status:500,
       response:"failed",
