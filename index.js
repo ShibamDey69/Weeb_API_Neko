@@ -1,6 +1,8 @@
 import express from 'express';
 const app = express()
 import bodyParser from 'body-parser';
+import os from 'node:os';
+const numCPUs = os.cpus().length;
 global.creator = "NekoSenpai"
 const PORT = process.env.PORT || 8080;
 import routes from './routes/router.js'
@@ -11,7 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 //app.use('/')
+
 app.set('json spaces', 2)
+
 app.use('/weeb/api', routes);
 app.use('/weeb/api/nsfw', nsfw_routes)
 app.use('/weeb/api/sfw', sfw_routes)
