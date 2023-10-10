@@ -13,17 +13,28 @@ const facebook = async (req, res) => {
       reason: "Please Provide A Facebook URL!!"
     })
     let response2 = await neko.facebook(text)
+    console.log(response2)
+    let urls;
     let description = response2.description
-    let urls = [
+    if(response2.urls[0].quality.includes("720p")) {
+     urls = [
       {
         quality: "720p (HD)",
-        url: response2.urls[0].url
+        url: response2?.urls[0]?.url
       },
       {
-        quality: "360p",
-        url: response2.urls[1].url
+        quality: "360p (SD)",
+        url: response2?.urls[1]?.url
       }
     ]
+  } else {
+      urls = [
+      {
+        quality: "360p (SD)",
+        url: response2?.urls[0]?.url
+      }
+    ]
+  }
     let response = {
       description: description,
       urls: urls
@@ -37,7 +48,7 @@ const facebook = async (req, res) => {
     await res.status(500).send({
       status: 500,
       response: "failed!!",
-      reason: "An Internal Error Occured!!"
+      reason: "An Internal Error Occured!!"+error
     })
   }
 }
