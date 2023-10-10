@@ -10,7 +10,7 @@ import { screenshot } from '../functions/sfw/converters/screenshot.js';
 import tiktok from '../functions/sfw/converters/tiktok.js';
 import { ytVideo, ytAudio } from '../functions/sfw/converters/youtube.js';
 import { animeSearch, animeTrending, animeAiring, animeMovie, animePopular, animeUpcoming, animeDetails, animeStreamUrl,
-animeGenre,animeLatest,animeUpdated,animeSpotlight } from '../functions/sfw/anime/aniwatch.js';
+animeGenre,animeLatest,animeUpdated,animeSpotlight, animeOna, animeDub,animeOva,animeSpecial,animeComplete,animeTv} from '../functions/sfw/anime/aniwatch.js';
 
 
 router.route("/fun/fact").get(facts)
@@ -42,5 +42,12 @@ router.route('/anime/aniwatch/updated').get(animeUpdated);
 router.route('/anime/aniwatch/genres/:genre').get(animeGenre);
 router.route('/anime/aniwatch/latest').get(animeLatest);
 router.route('/anime/aniwatch/spotlight').get(animeSpotlight);
+router.route('/anime/aniwatch/ona').get(animeOna);
+router.route('/anime/aniwatch/dub').get(animeDub);
+router.route('/anime/aniwatch/ova').get(animeOva);
+router.route('/anime/aniwatch/special').get(animeSpecial);
+router.route('/anime/aniwatch/completed').get(animeComplete);
+router.route('/anime/aniwatch/tv').get(animeTv)
+
 
 export default router
