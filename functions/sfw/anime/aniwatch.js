@@ -1,6 +1,8 @@
 import zAnime from 'z-anime';
 import axios from 'axios';
 const BASE_URL = 'https://aniwatch.to/';
+
+
 const animeSearch = async (req, res) => {
   try {
     let anime = req.query.anime;
@@ -147,6 +149,109 @@ const animeMovie = async (req, res) => {
   }
 }
 
+const animeUpdated = async (req, res) => {
+  try {
+    let page = req.query.page || 1
+    let response = await zAnime.updated(page)
+    if (response == "") return res.status(404).send({
+      status: 404,
+      response: "failed!!",
+      reason: "No Results Found!!"
+    })
+    return res.status(200).send({
+      creator: global.creator,
+      response: "successful!!",
+      response: "successful!!",
+      data: response
+    })
+  } catch (error) {
+    await res.status(500).send({
+      status: 500,
+      response: "failed!!",
+      reason: "An Internal Error Occured!! Error: "
+    })
+  }
+}
+
+  const animeSpotlight = async (req, res) => {
+  try {
+    let page = req.query.page || 1;
+    let response = await zAnime.spotlight(page)
+    if (response == "") return res.status(404).send({
+      status: 404,
+      response: "failed!!",
+      reason: "No Results Found!!"
+    })
+    return res.status(200).send({
+      creator: global.creator,
+      response: "successful!!",
+      response: "successful!!",
+      data: response
+    })
+  } catch (error) {
+    await res.status(500).send({
+      status: 500,
+      response: "failed!!",
+      reason: "An Internal Error Occured!! Error: "
+    })
+      }
+  }
+  
+    const animeLatest = async (req, res) => {
+  try {
+    let page = req.query.page || 1
+    let response = await zAnime.latest(page)
+    if (response == "") return res.status(404).send({
+      status: 404,
+      response: "failed!!",
+      reason: "No Results Found!!"
+    })
+    return res.status(200).send({
+      creator: global.creator,
+      response: "successful!!",
+      response: "successful!!",
+      data: response
+    })
+  } catch (error) {
+    await res.status(500).send({
+      status: 500,
+      response: "failed!!",
+      reason: "An Internal Error Occured!! Error: "
+    })
+      }
+    }
+  
+    const animeGenre = async (req, res) => {
+  try {
+    let page = req.query.page || 1
+    let genre = req.params.genre
+    if (!genre) {
+       return res.status(404).send({
+         status: 404,
+         response: "failed!!",
+         reason: "No Genre Provided!!"
+    })
+  }
+    let response = await zAnime.genere(genre, page)
+    if (response == "") return res.status(404).send({
+      status: 404,
+      response: "failed!!",
+      reason: "No Results Found!!"
+    })
+    return res.status(200).send({
+      creator: global.creator,
+      response: "successful!!",
+      data: response
+    })
+  } catch (error) {
+    await res.status(500).send({
+      status: 500,
+      response: "failed!!",
+      reason: "An Internal Error Occured!! Error: "
+    })
+  }
+    }
+        
 const animeDetails = async (req, res) => {
   try {
     let anime = req.query.anime
@@ -218,4 +323,8 @@ const animeStreamUrl = async (req, res) => {
     })
   }
 }
-export { animeSearch, animeTrending, animeAiring, animeUpcoming, animePopular, animeMovie, animeDetails, animeStreamUrl }
+export {
+  animeSearch, animeTrending, animeAiring, animeUpcoming, animePopular, animeMovie, animeDetails, animeStreamUrl, animeUpdated, 
+   animeGenre, animeLatest, animeSpotlight,
+       }
+      

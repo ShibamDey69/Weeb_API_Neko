@@ -9,7 +9,8 @@ import instagram from '../functions/sfw/converters/instagram.js';
 import { screenshot } from '../functions/sfw/converters/screenshot.js';
 import tiktok from '../functions/sfw/converters/tiktok.js';
 import { ytVideo, ytAudio } from '../functions/sfw/converters/youtube.js';
-import { animeSearch, animeTrending, animeAiring, animeMovie, animePopular, animeUpcoming, animeDetails, animeStreamUrl } from '../functions/sfw/anime/aniwatch.js';
+import { animeSearch, animeTrending, animeAiring, animeMovie, animePopular, animeUpcoming, animeDetails, animeStreamUrl,
+animeGenre,animeLatest,animeUpdated,animeSpotlight } from '../functions/sfw/anime/aniwatch.js';
 
 
 router.route("/fun/fact").get(facts)
@@ -37,5 +38,9 @@ router.route('/anime/aniwatch/popular').get(animePopular);
 router.route('/anime/aniwatch/movie').get(animeMovie);
 router.route('/anime/aniwatch/details').get(animeDetails);
 router.route('/anime/aniwatch/streamurl').get(animeStreamUrl);
+router.route('/anime/aniwatch/updated').get(animeUpdated);
+router.route('/anime/aniwatch/genres/:genre').get(animeGenre);
+router.route('/anime/aniwatch/latest').get(animeLatest);
+router.route('/anime/aniwatch/spotlight').get(animeSpotlight);
 
 export default router

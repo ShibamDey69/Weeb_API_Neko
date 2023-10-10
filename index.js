@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 
-console.log(numCPUs);
 if (cluster.isMaster) {
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
