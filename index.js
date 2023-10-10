@@ -2,6 +2,8 @@ import express from 'express';
 const app = express()
 import bodyParser from 'body-parser';
 import os from 'node:os';
+import cluster from 'node:cluster';
+
 const numCPUs = os.cpus().length;
 global.creator = "NekoSenpai"
 const PORT = process.env.PORT || 8080;
@@ -12,8 +14,13 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
-//app.use('/')
 
+console.log(numCPUs);
+if (cluster.isMaster) {
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+} else {
 app.set('json spaces', 2)
 
 app.use('/weeb/api', routes);
@@ -23,4 +30,4 @@ app.use('/weeb/api/sfw', sfw_routes)
 app.listen(PORT, () => {
   console.log(`Running on PORT ${PORT}`);
 })
-
+}

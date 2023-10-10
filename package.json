@@ -23,6 +23,7 @@
     "p-heaven": "^1.1.1",
     "qs": "^6.11.2",
     "web-screenshot.js": "^1.0.3",
-    "xvideos-scraper": "^1.0.4"
+    "xvideos-scraper": "^1.0.4",
+    "z-anime": "^1.1.3"
   }
 }
