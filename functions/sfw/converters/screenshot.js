@@ -24,7 +24,7 @@ const screenshot = async (req, res) => {
       text1 = text
       res1 = await neko.capture("https://"+text)
     }
-    let path = `${tmpdir()}/${text1}.png`
+    let path = `${tmpdir()}/${Math.random().toString()}.png`
     
     fs.writeFileSync(path,res1)
     let response1 = await graph(path)

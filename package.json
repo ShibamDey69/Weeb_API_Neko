@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^18.0.6",
+    "anilist-node": "^1.14.0",
     "axios": "^1.5.1",
     "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
@@ -20,6 +21,7 @@
     "mumaker": "^2.0.0",
     "node-fetch": "^3.2.6",
     "node-webshot": "^1.0.4",
+    "os": "^0.1.2",
     "p-heaven": "^1.1.1",
     "qs": "^6.11.2",
     "web-screenshot.js": "^1.0.3",
