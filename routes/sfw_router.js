@@ -14,6 +14,7 @@ import { animeSearch, animeTrending, animeAiring, animeMovie, animePopular, anim
 animeGenre,animeLatest,animeUpdated,animeSpotlight, animeOna, animeDub,animeOva,animeSpecial,animeComplete,animeTv} from '../functions/sfw/anime/aniwatch.js';
 import gifs from '../functions/sfw/anime/gifs.js';
 import animeNews from '../functions/sfw/anime/news.js';
+import { animeId,staffId,characterId, studioId,userId,animeName,staffName, characterName, studioName,userName ,getBirthdayCharacters , getBirthdayStuff} from '../functions/sfw/anime/anilist.js';
 
 
 /** FUN Routes */
@@ -62,5 +63,18 @@ router.route('/anime/gifs/:gif').get(gifs)
 /****** ANIME NEWS Routes ******/
 router.route('/anime/news').get(animeNews)
 
+/****** ANILIST Routes ******/
+router.route('/anime/anilist/animeid/').get(animeId)
+router.route('/anime/anilist/staffid/').get(staffId)
+router.route('/anime/anilist/characterid/').get(characterId)
+router.route('/anime/anilist/studioid/').get(studioId)
+router.route('/anime/anilist/userid/').get(userId)
+router.route('/anime/anilist/anime/').get(animeName)
+router.route('/anime/anilist/staff/').get(staffName)
+router.route('/anime/anilist/character/').get(characterName)
+router.route('/anime/anilist/studio/').get(studioName)
+router.route('/anime/anilist/user/').get(userName)
+router.route('/anime/anilist/birthday/').get(getBirthdayCharacters)
+router.route('/anime/anilist/birthdaystuff/').get(getBirthdayStuff)
 
 export default router
