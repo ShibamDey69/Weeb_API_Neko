@@ -21,7 +21,6 @@ app.use(express.urlencoded({ extended: true }));
   }
 } else {*/
 app.set('json spaces', 2)
-
 app.use('/weeb/api', routes);
 app.use('/weeb/api/nsfw', nsfw_routes)
 app.use('/weeb/api/sfw', sfw_routes)

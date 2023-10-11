@@ -15,6 +15,10 @@ animeGenre,animeLatest,animeUpdated,animeSpotlight, animeOna, animeDub,animeOva,
 import gifs from '../functions/sfw/anime/gifs.js';
 import animeNews from '../functions/sfw/anime/news.js';
 import { animeId,staffId,characterId, studioId,userId,animeName,staffName, characterName, studioName,userName ,getBirthdayCharacters , getBirthdayStuff} from '../functions/sfw/anime/anilist.js';
+import { mangaName, mangaId, chapterAnilist } from '../functions/sfw/manga/anilist.js';
+import { mangadex, mangadexId, chapterImageMangadex } from '../functions/sfw/manga/mangadex.js';
+import { mangahere, mangahereId, mangahereEpisode } from '../functions/sfw/manga/mangahere.js';
+import { mangakakalot, mangakakalotId, mangakakalotEpisode } from '../functions/sfw/manga/mangakakalot.js';
 
 
 /** FUN Routes */
@@ -64,11 +68,11 @@ router.route('/anime/gifs/:gif').get(gifs)
 router.route('/anime/news').get(animeNews)
 
 /****** ANILIST Routes ******/
-router.route('/anime/anilist/animeid/').get(animeId)
-router.route('/anime/anilist/staffid/').get(staffId)
-router.route('/anime/anilist/characterid/').get(characterId)
-router.route('/anime/anilist/studioid/').get(studioId)
-router.route('/anime/anilist/userid/').get(userId)
+router.route('/anime/anilist/anime/:id/').get(animeId)
+router.route('/anime/anilist/staff/:id/').get(staffId)
+router.route('/anime/anilist/character/:id/').get(characterId)
+router.route('/anime/anilist/studio/:id/').get(studioId)
+router.route('/anime/anilist/user/:id/').get(userId)
 router.route('/anime/anilist/anime/').get(animeName)
 router.route('/anime/anilist/staff/').get(staffName)
 router.route('/anime/anilist/character/').get(characterName)
@@ -76,5 +80,27 @@ router.route('/anime/anilist/studio/').get(studioName)
 router.route('/anime/anilist/user/').get(userName)
 router.route('/anime/anilist/birthday/').get(getBirthdayCharacters)
 router.route('/anime/anilist/birthdaystuff/').get(getBirthdayStuff)
+
+/****** MANGA Routes ******/
+/** ANILIST ROUTES */
+router.route('/manga/anilist/chapter/').get(chapterAnilist)
+router.route('/manga/anilist/search/').get(mangaName)
+router.route('/manga/anilist/info/:id').get(mangaId)
+
+/** MANGADEX ROUTES */
+router.route('/manga/mangadex/chapter/:id').get(chapterImageMangadex)
+router.route('/manga/mangadex/search/').get(mangadex)
+router.route('/manga/mangadex/info/:id').get(mangadexId)
+
+/** MANGAHERE ROUTES */
+router.route('/manga/mangahere/chapter/:id').get(mangahereEpisode)
+router.route('/manga/mangahere/search/').get(mangahere)
+router.route('/manga/mangahere/info/:id').get(mangahereId)
+
+/** MANGAKAKALOT ROUTES */
+router.route('/manga/mangakakalot/chapter/:id').get(mangakakalotEpisode)
+router.route('/manga/mangakakalot/search/').get(mangakakalot)
+router.route('/manga/mangakakalot/info/:id').get(mangakakalotId)
+
 
 export default router

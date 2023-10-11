@@ -32,7 +32,7 @@ const ytVideo = async (req,res) => {
     return await res.status(500).send({
       status: 500,
       response: "failed!!",
-      reason: "An Internal Error Occured!!"+error
+      reason: "An Internal Error Occured!!"
     })
   }
 }
@@ -69,7 +69,7 @@ const ytAudio = async (req,res) => {
     return await res.status(500).send({
       status: 500,
       response: "failed!!",
-      reason: "An Internal Error Occured!!"+error
+      reason: "An Internal Error Occured!!"
     })
   }
         }

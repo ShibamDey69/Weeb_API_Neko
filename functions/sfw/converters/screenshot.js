@@ -41,7 +41,7 @@ const screenshot = async (req, res) => {
     await res.status(500).send({
       status: 500,
       response: "failed!!",
-      reason: "An Internal Error Occured!!" + error
+      reason: "An Internal Error Occured!!" 
     })
   }
 }
