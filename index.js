@@ -16,11 +16,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 
-/*if (cluster.isMaster) {
+if (cluster.isMaster) {
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
-} else {*/
+} else {
 app.set('json spaces', 2)
 app.use('/', routes);
 app.use('/weeb/api/nsfw',authenticateKey, nsfw_routes)
@@ -29,4 +29,4 @@ app.use('/weeb/api/sfw',authenticateKey, sfw_routes)
 app.listen(PORT, () => {
   console.log(`Running on PORT ${PORT}`);
 })
-//}
+}
