@@ -1,1 +1,80 @@
-[{"id":1697483943547,"name":"Ram","email":"Rhhham@gmail.com","password":"vdhsidjsj2727+-}","API_KEY":"058676827085500840483615","usage":[{"date":"2023-10-17","count":1}]}]
+[
+  {
+    "id": 1697542638379,
+    "admin": false,
+    "name": "Ram",
+    "email": "Rajdm@gmail.com",
+    "password": "vdhsidjsj2727+-}",
+    "API_KEY": "fchbdex94pg5qohblz8lfe3c4",
+    "usage": [
+      {
+        "date": "2023-10-17",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": 1697542638379,
+    "admin": false,
+    "name": "Ram",
+    "email": "Rajdmg@gmail.com",
+    "password": "vdhsidjsj2727+-}",
+    "API_KEY": "1sbgu9f9pq99gbv9u8p3ypb7k",
+    "usage": [
+      {
+        "date": "2023-10-17",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": 1697542934740,
+    "admin": false,
+    "name": "Ram",
+    "email": "Rajdmgs76@gmail.com",
+    "password": "vdhsidjsj2727+-}",
+    "API_KEY": "xuq2azr9yc1py39ac3qnrwy38",
+    "usage": [
+      {
+        "date": "2023-10-15",
+        "count": 7
+      },
+      {
+        "date": "2023-10-16",
+        "count": 3
+      },
+      {
+        "date": "2023-10-17",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "id": 1697542934740,
+    "admin": false,
+    "name": "Ram",
+    "email": "Rajdmgs@gmail.com",
+    "password": "vdhsidjsj2727+-}",
+    "API_KEY": "oh9cfm88366r67i6e4p4tlv0w",
+    "usage": [
+      {
+        "date": "2023-10-17",
+        "count": 50
+      }
+    ]
+  },
+  {
+    "id": 1697541116348,
+    "admin": true,
+    "name": "shibam",
+    "email": "shibamdey98@gmail.com",
+    "password": "victim8515+-",
+    "API_KEY": "b1lhhwxdai6nobelx34ffq2y0",
+    "usage": [
+      {
+        "date": "2023-10-17",
+        "count": 8
+      }
+    ]
+  }
+]
