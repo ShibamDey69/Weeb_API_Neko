@@ -1,5 +1,5 @@
-import data from '../../../data/question.json' assert { type: "json" };
-
+import fs from 'node:fs';
+let data = JSON.pqrse(fs.readFileSync('./data/question.json', 'utf8'))
 const question = async (req, res) => {
   try {
     let random = Math.floor(Math.random() * data.length);

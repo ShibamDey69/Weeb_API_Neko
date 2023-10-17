@@ -1,5 +1,5 @@
-import data from '../../../data/couplepp.json' assert { type: "json" };
-
+import fs from 'node:fs';
+let data = JSON.parse(fs.readFileSync('./data/couplepp.json', 'utf8'))
 const couplepp = async (req, res) => {
   try {
     let random = Math.floor(Math.random() * data.length);

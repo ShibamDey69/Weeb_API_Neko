@@ -66,6 +66,6 @@ const filtered = arr.filter(({ API_KEY }, index) => !ids.includes(API_KEY, index
    } 
   } else {
     //Reject request if API key doesn't match
-    res.status(403).send({ error: { code: 403, msg: "You not allowed." } });
+    res.status(403).send({ error: { code: 403, msg: "Please Provide The Correct api_key!!" } });
   }
 };

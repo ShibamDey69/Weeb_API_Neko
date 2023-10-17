@@ -1,4 +1,5 @@
-import data from '../../../data/truths.json' assert { type: "json" };
+import fs from 'node:fs';
+let data = JSON.parse(fs.readFileSync('./data/truths.json', 'utf8'))
 
 const truth = async(req,res) => {
   try {
