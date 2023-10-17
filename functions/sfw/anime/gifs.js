@@ -17,7 +17,8 @@ const gifs = async(req,res) => {
     }
     return await res.status(200).send({
       status:200,
-      response:"successful",
+      creator:global.creator,
+      response:"successful!!",
       data:response
     })
   } catch (error) {

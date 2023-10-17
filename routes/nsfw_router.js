@@ -1,6 +1,6 @@
 import express from 'express';
-import { xnxxSingle,xnxxMultiple } from '../functions/nsfw/porn/xnxx.js';
-import { xvideosSingle,xvideosMultiple } from '../functions/nsfw/porn/xvideos.js';
+import { xnxxSingle, xnxxMultiple } from '../functions/nsfw/porn/xnxx.js';
+import { xvideosSingle, xvideosMultiple } from '../functions/nsfw/porn/xvideos.js';
 import gifs from '../functions/nsfw/anime/gifs.js';
 const router = express.Router()
 

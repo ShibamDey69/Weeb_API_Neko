@@ -5,17 +5,17 @@ let neko = anilist.searchEntry
 export async function animeId(req, res) {
   try {
     let id = req.params.id;
-    if (!id) return res.status(400).json({
-      status: 400,
+    if (!id) return res.status(404).json({
+      status: 404,
       response: "failed!!",
-      readon: "Please Provide Name Or ID!!",
+      readon: "Please Provide ID!!",
     });
 
     if (isNaN(id)) {
       return await res.status(400).json({
         status: 400,
         response: "failed!!",
-        reason: "Please Provide ID!!",
+        reason: "Please Provide Valid ID!!",
       });
     }
     let ids = Number(id);
@@ -40,16 +40,16 @@ export async function staffId(req, res) {
   try {
     let id = req.params.id;
     if (!id) return res.status(400).json({
-      status: 400,
+      status: 404,
       response: "failed!!",
       readon: "Please Provide ID!!",
     });
 
     if (isNaN(id)) {
-      return await res.status(400).json({
+      return await res.status(404).json({
         status: 400,
         response: "failed!!",
-        reason: "Please Provide ID!!",
+        reason: "Please Provide Valid ID!!",
       })
     }
     let ids = Number(id);
@@ -72,8 +72,8 @@ export async function staffId(req, res) {
 export async function characterId(req, res) {
   try {
     let id = req.params.id;
-    if (!id) return res.status(400).json({
-      status: 400,
+    if (!id) return res.status(404).json({
+      status: 404,
       response: "failed!!",
       readon: "Please Provide ID!!",
     });
@@ -105,10 +105,10 @@ export async function characterId(req, res) {
 export async function studioId(req, res) {
   try {
     let id = req.params.id;
-    if (!id) return res.status(400).json({
-      status: 400,
+    if (!id) return res.status(404).json({
+      status: 404,
       response: "failed!!",
-      readon: "Please Provide ID!!",
+      readon: "Please Provide Valid ID!!",
     });
 
     if (isNaN(id)) {
@@ -139,8 +139,8 @@ export async function studioId(req, res) {
 export async function userId(req, res) {
   try {
     let id = req.params.id;
-    if (!id) return res.status(400).json({
-      status: 400,
+    if (!id) return res.status(404).json({
+      status: 404,
       response: "failed!!",
       readon: "Please Provide ID!!",
     });
@@ -177,8 +177,8 @@ export async function animeName(req, res) {
     let filter = req.query.filter || null;
     let page = req.query.page || 1;
     let amount = req.query.amount || 8;
-    if (!name) return res.status(400).json({
-      status: 400,
+    if (!name) return res.status(404).json({
+      status: 404,
       response: "failed!!",
       reason: "Please Provide Name !!",
     });
@@ -205,8 +205,8 @@ export async function staffName(req, res) {
     let name = req.query.name;
     let page = req.query.page || 1;
     let amount = req.query.amount || 8;
-    if (!name) return res.status(400).json({
-      status: 400,
+    if (!name) return res.status(404).json({
+      status: 404,
       response: "failed!!",
       reason: "Please Provide Name !!",
     });
@@ -234,8 +234,8 @@ export async function characterName(req, res) {
     let page = req.query.page || 1;
     let amount = req.query.amount || 8;
 
-    if (!name) return res.status(400).json({
-      status: 400,
+    if (!name) return res.status(404).json({
+      status: 404,
       response: "failed!!",
       reason: "Please Provide Name !!",
     });
@@ -264,8 +264,8 @@ export async function studioName(req, res) {
     let page = req.query.page || 1;
     let amount = req.query.amount || 8;
 
-    if (!name) return res.status(400).json({
-      status: 400,
+    if (!name) return res.status(404).json({
+      status: 404,
       response: "failed!!",
       reason: "Please Provide Name !!",
     });
@@ -292,8 +292,8 @@ export async function userName(req, res) {
     let name = req.query.name;
     let page = req.query.page || 1;
     let amount = req.query.amount || 8;
-    if (!name) return res.status(400).json({
-      status: 400,
+    if (!name) return res.status(404).json({
+      status: 404,
       response: "failed!!",
       reason: "Please Provide Name !!",
     });

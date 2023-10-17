@@ -19,6 +19,12 @@ import { mangaName, mangaId, chapterAnilist } from '../functions/sfw/manga/anili
 import { mangadex, mangadexId, chapterImageMangadex } from '../functions/sfw/manga/mangadex.js';
 import { mangahere, mangahereId, mangahereEpisode } from '../functions/sfw/manga/mangahere.js';
 import { mangakakalot, mangakakalotId, mangakakalotEpisode } from '../functions/sfw/manga/mangakakalot.js';
+import { asuraSearch,asuraLastUpdate,asuraPopularToday,asuraPopular,asuraPdf,asuraDetails,asuraEpDownloader } from '../functions/sfw/manhwa/asurascans.js';
+import {dramaSchoolSearch,dramaSchoolInfo , dramaSchoolEpisode} from '../functions/sfw/k-drama/dramaschool.js';
+import { asianSearch, asianInfo, asianEpisode } from '../functions/sfw/k-drama/viewasian.js';
+import { google } from '../functions/sfw/search/google.js';
+
+
 
 
 /** FUN Routes */
@@ -48,7 +54,7 @@ router.route('/anime/aniwatch/airing').get(animeAiring);
 router.route('/anime/aniwatch/upcoming').get(animeUpcoming);
 router.route('/anime/aniwatch/popular').get(animePopular);
 router.route('/anime/aniwatch/movie').get(animeMovie);
-router.route('/anime/aniwatch/details').get(animeDetails);
+router.route('/anime/aniwatch/info').get(animeDetails);
 router.route('/anime/aniwatch/streamurl').get(animeStreamUrl);
 router.route('/anime/aniwatch/updated').get(animeUpdated);
 router.route('/anime/aniwatch/genres/:genre').get(animeGenre);
@@ -68,7 +74,7 @@ router.route('/anime/gifs/:gif').get(gifs)
 router.route('/anime/news').get(animeNews)
 
 /****** ANILIST Routes ******/
-router.route('/anime/anilist/anime/:id/').get(animeId)
+router.route('/anime/anilist/info/:id/').get(animeId)
 router.route('/anime/anilist/staff/:id/').get(staffId)
 router.route('/anime/anilist/character/:id/').get(characterId)
 router.route('/anime/anilist/studio/:id/').get(studioId)
@@ -79,7 +85,7 @@ router.route('/anime/anilist/character/').get(characterName)
 router.route('/anime/anilist/studio/').get(studioName)
 router.route('/anime/anilist/user/').get(userName)
 router.route('/anime/anilist/birthday/').get(getBirthdayCharacters)
-router.route('/anime/anilist/birthdaystuff/').get(getBirthdayStuff)
+router.route('/anime/anilist/birthday/stuff/').get(getBirthdayStuff)
 
 /****** MANGA Routes ******/
 /** ANILIST ROUTES */
@@ -103,4 +109,29 @@ router.route('/manga/mangakakalot/search/').get(mangakakalot)
 router.route('/manga/mangakakalot/info/:id').get(mangakakalotId)
 
 
+/****** MANHWA Routes ******/
+
+/** ASURASCANS ROUTES*/
+router.route('/manhwa/asurascans/chapter/').get(asuraEpDownloader)
+router.route('/manhwa/asurascans/search/').get(asuraSearch)
+router.route('/manhwa/asurascans/info/').get(asuraDetails)
+router.route('/manhwa/asurascans/latest').get(asuraLastUpdate)
+router.route('/manhwa/asurascans/popular').get(asuraPopular)
+router.route('/manhwa/asurascans/popular/today').get(asuraPopularToday)
+router.route('/manhwa/asurascans/chapter/pdf').get(asuraPdf)
+
+/** K-DRAMA ROUTES*/
+
+/** DRAMASCHOOL ROUTES */
+router.route('/kdrama/dramaschool/search/').get(dramaSchoolSearch)
+router.route('/kdrama/dramaschool/info/').get(dramaSchoolInfo)
+router.route('/kdrama/dramaschool/episode').get(dramaSchoolEpisode)
+
+/** VIEWASIAN ROUTES*/
+router.route('/kdrama/viewasian/search/').get(asianSearch)
+router.route('/kdrama/viewasian/info/').get(asianInfo)
+router.route('/kdrama/viewasian/episode').get(asianEpisode)
+
+/** SEARCH ROUTES */
+router.route("/search/google/search").get(google)
 export default router

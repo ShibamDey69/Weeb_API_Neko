@@ -3,6 +3,7 @@ const app = express()
 import bodyParser from 'body-parser';
 import os from 'node:os';
 import cluster from 'node:cluster';
+import {authenticateKey} from './Auth/auth.js';
 
 const numCPUs = os.cpus().length;
 global.creator = "NekoSenpai"
@@ -21,9 +22,9 @@ app.use(express.urlencoded({ extended: true }));
   }
 } else {*/
 app.set('json spaces', 2)
-app.use('/weeb/api', routes);
-app.use('/weeb/api/nsfw', nsfw_routes)
-app.use('/weeb/api/sfw', sfw_routes)
+app.use('/', routes);
+app.use('/weeb/api/nsfw',authenticateKey, nsfw_routes)
+app.use('/weeb/api/sfw',authenticateKey, sfw_routes)
 
 app.listen(PORT, () => {
   console.log(`Running on PORT ${PORT}`);

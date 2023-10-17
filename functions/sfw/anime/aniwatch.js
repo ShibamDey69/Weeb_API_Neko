@@ -18,6 +18,8 @@ const animeSearch = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      stauts: 200,
+      response: "successful!!",
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -43,6 +45,7 @@ const animeTrending = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -67,6 +70,7 @@ const animeAiring = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -90,6 +94,7 @@ const animeUpcoming = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -113,6 +118,7 @@ const animePopular = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -136,6 +142,7 @@ const animeMovie = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -159,8 +166,8 @@ const animeUpdated = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -183,8 +190,8 @@ const animeSpotlight = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -217,6 +224,7 @@ const animeGenre = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -225,7 +233,7 @@ const animeGenre = async (req, res) => {
     await res.status(500).send({
       status: 500,
       response: "failed!!",
-      reason: "An Internal Error Occured!! Error: "+error
+      reason: "An Internal Error Occured!! Error: " + error
     })
   }
 }
@@ -240,8 +248,8 @@ const animeLatest = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -264,8 +272,8 @@ const animeOna = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -288,8 +296,8 @@ const animeOva = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -312,8 +320,8 @@ const animeTv = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -336,8 +344,8 @@ const animeSpecial = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -360,8 +368,8 @@ const animeComplete = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -384,8 +392,8 @@ const animeDub = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
-      response: "successful!!",
       response: "successful!!",
       data: response
     })
@@ -413,6 +421,7 @@ const animeDetails = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -457,6 +466,7 @@ const animeStreamUrl = async (req, res) => {
       reason: "No Results Found!!"
     })
     return res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response.data
@@ -470,10 +480,10 @@ const animeStreamUrl = async (req, res) => {
   }
 }
 export {
-  animeSearch, animeTrending, animeAiring, 
-  animeUpcoming, animePopular, animeMovie, 
+  animeSearch, animeTrending, animeAiring,
+  animeUpcoming, animePopular, animeMovie,
   animeDetails, animeStreamUrl, animeUpdated,
   animeGenre, animeLatest, animeSpotlight,
-  animeOna, animeDub,animeOva,animeSpecial,
-  animeComplete,animeTv
+  animeOna, animeDub, animeOva, animeSpecial,
+  animeComplete, animeTv
 }

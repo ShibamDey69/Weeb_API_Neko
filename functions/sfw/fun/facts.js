@@ -8,6 +8,7 @@ const facts = async (req, res) => {
       fact: data[random]
     }
     return await res.status(200).send({
+      status: 200,
       creator: global.creator,
       response: "successful!!",
       data: response

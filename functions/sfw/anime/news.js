@@ -6,6 +6,7 @@ const animNnews = async (req, res) => {
   let response = await axios.get('https://api.consumet.org/news/ann/recent-feeds');
     return res.status(200).send({
       status: 200,
+      creator: global.creator,
       response: "successful",
       data: response.data
     });

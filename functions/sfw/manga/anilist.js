@@ -1,7 +1,7 @@
 import Anilist from 'anilist-node';
 let anilist = new Anilist();
 let neko = anilist.searchEntry;
-import axios from 'axios'; 
+import axios from 'axios';
 
 
 export async function mangaId(req, res) {
@@ -11,7 +11,7 @@ export async function mangaId(req, res) {
     if (!id) return res.status(400).json({
       status: 400,
       response: "failed!!",
-      readon: "Please Provide Name Or ID!!",
+      reason: "Please Provide Name Or ID!!",
     });
 
     if (isNaN(id)) {
@@ -74,15 +74,15 @@ export async function chapterAnilist(req, res) {
     if (!chapterId) return res.status(400).json({
       status: 400,
       response: "failed!!",
-      readon: "Please Provide ID!!",
+      reason: "Please Provide ID!!",
     });
-    let response = await axios.get(`https://api.consumet.org/meta/anilist-manga/read`,{ params: { chapterId: chapterId, provider: provider } })
+    let response = await axios.get(`https://api.consumet.org/meta/anilist-manga/read`, { params: { chapterId: chapterId, provider: provider } })
     return await res.status(200).send({
       status: 200,
       response: "successful!!",
       data: response.data
     })
-    
+
   } catch (error) {
     await res.status(500).json({
       status: 500,
@@ -91,4 +91,3 @@ export async function chapterAnilist(req, res) {
     })
   }
 }
-    
