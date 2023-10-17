@@ -3,6 +3,7 @@ const router = express.Router()
 import fs from 'node:fs';
 let folder = "./storage"
 let path = "./storage/user.json"
+import {authenticateKey} from "./../Auth/auth.js"
 let arr = [];
 function API(len = 16) {
   return [...Array(len)]
@@ -28,7 +29,6 @@ router.route("/register").post((req,res) => {
       error: "Please fill all the fields!!"
     })
   }
-    console.log(`lol1`);
   function User(ids,admins,names,emails,passwords,API_KEYS,Today) {
      this.id = ids;
      this.admin = admins
@@ -101,4 +101,24 @@ router.route("/login").post((req,res) => {
 })
 
 
+router.route("/users").get(authenticateKey,async(req,res) => {
+  try {
+    let apikey = req.query.api_key
+    if(!apikey) return res.status(400).json({
+      msg:"Please provide an api key!!"
+    })
+    let users = JSON.parse(fs.readFileSync(path,'utf8'));
+    const result = users.find(({ API_KEY }) => API_KEY === apikey);
+    if(result.admin !== true) return res.status(400).json({
+      msg: "You are not authorized to view this page!!"
+    })
+   return await res.send({
+      msg:"Successfully Logged In!!",
+      users:users
+    })
+    
+  } catch(error) {
+    console.log(error);
+  }
+})
 export default router
