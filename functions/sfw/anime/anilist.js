@@ -173,7 +173,7 @@ export async function userId(req, res) {
 
 export async function animeName(req, res) {
   try {
-    let name = req.query.name;
+    let name = req.query.anime;
     let filter = req.query.filter || null;
     let page = req.query.page || 1;
     let amount = req.query.amount || 8;

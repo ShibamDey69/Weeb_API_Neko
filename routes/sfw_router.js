@@ -14,8 +14,9 @@ import { animeSearch, animeTrending, animeAiring, animeMovie, animePopular, anim
 animeGenre,animeLatest,animeUpdated,animeSpotlight, animeOna, animeDub,animeOva,animeSpecial,animeComplete,animeTv} from '../functions/sfw/anime/aniwatch.js';
 import gifs from '../functions/sfw/anime/gifs.js';
 import animeNews from '../functions/sfw/anime/news.js';
-import { animeId,staffId,characterId, studioId,userId,animeName,staffName, characterName, studioName,userName ,getBirthdayCharacters , getBirthdayStuff} from '../functions/sfw/anime/anilist.js';
+import { animeId,staffId,characterId, studioId,userId,animeName,staffName, characterName, studioName,userName ,getBirthdayCharacters , getBirthdayStuff } from '../functions/sfw/anime/anilist.js';
 import { mangaName, mangaId, chapterAnilist } from '../functions/sfw/manga/anilist.js';
+import { animegogoName, gogoanimeInfo, gogoanimeEpisode } from '../functions/sfw/anime/gogoanime.js';
 import { mangadex, mangadexId, chapterImageMangadex } from '../functions/sfw/manga/mangadex.js';
 import { mangahere, mangahereId, mangahereEpisode } from '../functions/sfw/manga/mangahere.js';
 import { mangakakalot, mangakakalotId, mangakakalotEpisode } from '../functions/sfw/manga/mangakakalot.js';
@@ -67,6 +68,10 @@ router.route('/anime/aniwatch/special').get(animeSpecial);
 router.route('/anime/aniwatch/completed').get(animeComplete);
 router.route('/anime/aniwatch/tv').get(animeTv)
 
+router.route('/anime/gogoanime/search/').get(animegogoName);
+router.route('/anime/gogoanime/info/').get(gogoanimeInfo);
+router.route('/anime/gogoanime/streamurl/').get(gogoanimeEpisode);
+
 /****** GIF Routes ******/
 router.route('/anime/gifs/:gif').get(gifs)
 
@@ -79,7 +84,7 @@ router.route('/anime/anilist/staff/:id/').get(staffId)
 router.route('/anime/anilist/character/:id/').get(characterId)
 router.route('/anime/anilist/studio/:id/').get(studioId)
 router.route('/anime/anilist/user/:id/').get(userId)
-router.route('/anime/anilist/anime/').get(animeName)
+router.route('/anime/anilist/search/').get(animeName)
 router.route('/anime/anilist/staff/').get(staffName)
 router.route('/anime/anilist/character/').get(characterName)
 router.route('/anime/anilist/studio/').get(studioName)
