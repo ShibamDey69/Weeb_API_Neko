@@ -27,7 +27,9 @@
     "os": "^0.1.2",
     "p-heaven": "^1.1.1",
     "qs": "^6.11.2",
+    "uuid": "^9.0.1",
     "web-screenshot.js": "^1.0.3",
+    "ws": "^8.14.2",
     "xvideos-scraper": "^1.0.4",
     "z-anime": "^1.1.3"
   }

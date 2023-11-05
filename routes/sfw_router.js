@@ -8,8 +8,13 @@ import couplepp from '../functions/sfw/fun/couplepp.js';
 import facebook from '../functions/sfw/converters/facebook.js';
 import instagram from '../functions/sfw/converters/instagram.js';
 import { screenshot } from '../functions/sfw/converters/screenshot.js';
-import tiktok from '../functions/sfw/converters/tiktok.js';
+  
 import { ytVideo, ytAudio } from '../functions/sfw/converters/youtube.js';
+
+import tiktok from "../functions/sfw/converters/tiktok.js"
+
+import characterAi from '../functions/sfw/Ai/characterai.js';
+
 import { animeSearch, animeTrending, animeAiring, animeMovie, animePopular, animeUpcoming, animeDetails, animeStreamUrl,
 animeGenre,animeLatest,animeUpdated,animeSpotlight, animeOna, animeDub,animeOva,animeSpecial,animeComplete,animeTv} from '../functions/sfw/anime/aniwatch.js';
 import gifs from '../functions/sfw/anime/gifs.js';
@@ -120,8 +125,8 @@ router.route('/manga/mangakakalot/info/:id').get(mangakakalotId)
 router.route('/manhwa/asurascans/chapter/').get(asuraEpDownloader)
 router.route('/manhwa/asurascans/search/').get(asuraSearch)
 router.route('/manhwa/asurascans/info/').get(asuraDetails)
-router.route('/manhwa/asurascans/latest').get(asuraLastUpdate)
-router.route('/manhwa/asurascans/popular').get(asuraPopular)
+router.route('/manhwa/asurascans/latest/').get(asuraLastUpdate)
+router.route('/manhwa/asurascans/popular/').get(asuraPopular)
 router.route('/manhwa/asurascans/popular/today').get(asuraPopularToday)
 router.route('/manhwa/asurascans/chapter/pdf').get(asuraPdf)
 
@@ -130,13 +135,16 @@ router.route('/manhwa/asurascans/chapter/pdf').get(asuraPdf)
 /** DRAMASCHOOL ROUTES */
 router.route('/kdrama/dramaschool/search/').get(dramaSchoolSearch)
 router.route('/kdrama/dramaschool/info/').get(dramaSchoolInfo)
-router.route('/kdrama/dramaschool/episode').get(dramaSchoolEpisode)
+router.route('/kdrama/dramaschool/episode/').get(dramaSchoolEpisode)
 
 /** VIEWASIAN ROUTES*/
 router.route('/kdrama/viewasian/search/').get(asianSearch)
 router.route('/kdrama/viewasian/info/').get(asianInfo)
-router.route('/kdrama/viewasian/episode').get(asianEpisode)
+router.route('/kdrama/viewasian/episode/').get(asianEpisode)
 
 /** SEARCH ROUTES */
 router.route("/search/google/search").get(google)
+
+/**AI ROUTES**/
+router.route("/ai/character/").get(characterAi)
 export default router
