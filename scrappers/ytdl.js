@@ -41,7 +41,7 @@ const ress = await axios.post(ap,qs.stringify(payload),headers)
     }
     if (format== "mp3") {
       return {
-        status:"ok",statusCode:200,url:`https://ve44.aadika.xyz/download/${ress.data.vid}/mp3/128/${ress.data.timeExpires}/${ress.data.token}/1?f=SaveTube.App`
+url:`https://ve44.aadika.xyz/download/${ress.data.vid}/mp3/128/${ress.data.timeExpires}/${ress.data.token}/1?f=SaveTube.App`
     }
       }
  const response = await axios.post(api,paylo,headers)

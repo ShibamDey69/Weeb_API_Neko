@@ -15,8 +15,7 @@ export function authenticateKey (req, res, next) {
     let usageCount = account.usage.findIndex((day) => day.date == today);
     if(account.admin === false) {
     if (usageCount >= 0) {
-      //If API is already used today
-      
+      //If API is already used today  
       if (account.usage[usageCount].count >= MAX) {
         //stop if the usage exceeds max API calls
         res.status(429).send({
@@ -66,6 +65,6 @@ const filtered = arr.filter(({ API_KEY }, index) => !ids.includes(API_KEY, index
    } 
   } else {
     //Reject request if API key doesn't match
-    res.status(403).send({ error: { code: 403, msg: "Please Provide The Correct api_key!!" } });
+   return res.status(403).send({ error: { code: 403, msg: "Please Provide The Correct api_key!!" } });
   }
 };

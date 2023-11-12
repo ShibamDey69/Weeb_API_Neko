@@ -44,10 +44,7 @@ router.route("/register").post((req,res) => {
     msg: "Email already exists!!"
   })
   arr.push(user)
-    function removeDuplicates(arr) {
-        return arr.filter((item,
-            index) => arr.indexOf(item) === index);
-    }
+    
     const unique = arr.filter((obj, index) => {
           return index === arr.findIndex(o => obj.email === o.email);
       });

@@ -14,15 +14,9 @@ const ytVideo = async (req,res) => {
       status: 400,
       response: "failed!!",
       reason: "Please Provide A YouTube URL!!"
-    })
-   let response = await ytdl(text,"mp4",quality)
-    let statusCode = response.data.statusCode
+    });
+   let response = await ytdl(text,"mp4",quality);
     
-    if (statusCode == 500) return res.status(400).send({
-      status: 400,
-      response: "failed!!",
-      reason: "Please Provide A Valid YouTube URL!!"
-    })
     return await res.status(200).send({
       creator: global.creator,
       response: "successful!!",
@@ -52,14 +46,8 @@ const ytAudio = async (req,res) => {
       response: "failed!!",
       reason: "Please Provide A YouTube URL!!"
     })
-    let response = await ytdl(text,"mp3")
-    let statusCode = response.url
+    let response = await ytdl(text,"mp3");
     
-    if (statusCode.includes(undefined)) return res.status(400).send({
-      status: 400,
-      response: "failed!!",
-      reason: "Please Provide A Valid YouTube URL!!"
-    })
     return await res.status(200).send({
       creator: global.creator,
       response: "successful!!",
