@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@consumet/extensions": "^1.5.4",
     "@types/node": "^18.0.6",
     "abort-controller": "^3.0.0",
     "anilist-node": "^1.14.0",

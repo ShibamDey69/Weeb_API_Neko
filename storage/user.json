@@ -31,28 +31,6 @@
     "id": 1697542934740,
     "admin": false,
     "name": "Ram",
-    "email": "Rajdmgs76@gmail.com",
-    "password": "vdhsidjsj2727+-}",
-    "API_KEY": "xuq2azr9yc1py39ac3qnrwy38",
-    "usage": [
-      {
-        "date": "2023-10-15",
-        "count": 7
-      },
-      {
-        "date": "2023-10-16",
-        "count": 3
-      },
-      {
-        "date": "2023-10-17",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "id": 1697542934740,
-    "admin": false,
-    "name": "Ram",
     "email": "Rajdmgs@gmail.com",
     "password": "vdhsidjsj2727+-}",
     "API_KEY": "oh9cfm88366r67i6e4p4tlv0w",
@@ -193,7 +171,33 @@
       },
       {
         "date": "2023-11-21",
-        "count": 206
+        "count": 208
+      }
+    ]
+  },
+  {
+    "id": 1697542934740,
+    "admin": false,
+    "name": "Ram",
+    "email": "Rajdmgs76@gmail.com",
+    "password": "vdhsidjsj2727+-}",
+    "API_KEY": "xuq2azr9yc1py39ac3qnrwy38",
+    "usage": [
+      {
+        "date": "2023-10-15",
+        "count": 7
+      },
+      {
+        "date": "2023-10-16",
+        "count": 3
+      },
+      {
+        "date": "2023-10-17",
+        "count": 2
+      },
+      {
+        "date": "2023-11-21",
+        "count": 6
       }
     ]
   }

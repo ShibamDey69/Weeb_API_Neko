@@ -27,7 +27,7 @@ characterAI.setup(characterId, chatId, authorId, authorName);
     await res.status(500).send({
       status: 500,
       response: "failed!!",
-      reason: "An Internal Error Occured!! Error: "
+      reason: "An Internal Error Occured!! "
     })
   }
 }
