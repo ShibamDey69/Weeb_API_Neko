@@ -34,7 +34,7 @@ export async function animegogoName(req, res) {
 export async function gogoanimeInfo(req,res) {
   try {
     let animeId = req.query.id
-    if (!anime) return res.status(404).send({
+    if (!animeId) return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "Please Provide AnimeId...!!"
