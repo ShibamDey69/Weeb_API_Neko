@@ -61,7 +61,7 @@ export async function gogoanimeEpisode(req, res) {
   try {
     let EpisodeId = req.query.id;
     let server = req.query.server || "gogocdn";
-    if (!animeId) return res.status(404).send({
+    if (!EpisodeId) return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "Please Provide A EpisodeId...!!"
