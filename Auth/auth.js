@@ -5,14 +5,15 @@ export async function authenticateKey (req, res, next) {
   
   let API_KEY = req.query.api_key; 
   let account = await User.findOne({ apiKey: API_KEY });
-  if(account.isBanned === true) return res.status(403).json({
-    message: "You are banned from using this API."
-  })
   let MAX = (account.isPremium === true) ? 150 : 500;
   if (account) {
     let today = new Date().toISOString().split("T")[0];
     let usageCount = account.usage.findIndex((day) => day.date == today);
     if(account.isAdmin === false) {
+      if(account.isBanned === true) return res.status(403).json({
+    message: "You are banned from using this API."
+  })
+  
     if (usageCount >= 0) {
       //If API is already used today  
       if (account.usage[usageCount].count >= MAX) {
