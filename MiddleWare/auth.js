@@ -5,7 +5,7 @@ export async function authenticateKey (req, res, next) {
   
   let API_KEY = req.query.api_key; 
   let account = await User.findOne({ apiKey: API_KEY });
-  let MAX = (account.isPremium === true) ? 150 : 500;
+  let MAX = (account?.isPremium === true) ? 150 : 500;
   if (account) {
     let today = new Date().toISOString().split("T")[0];
     let usageCount = account.usage.findIndex((day) => day.date == today);

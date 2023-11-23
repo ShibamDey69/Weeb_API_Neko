@@ -7,16 +7,20 @@ const API = (len = 16) => {
   .join('');
   }
 
+
+
 const register = async(req, res) => {
   try {
     const { username, password, email ,phone } = req.body;
   if (!username || !password || !email || !phone) {
     return res.status(400).json({
-      message: "Missing username, password, email or phone number...!",
+      status:"failed!",
+      message: "Missing Credentials...!",
     });
         }
     if(isNaN(phone)) return res.status(401).send({
-    message: "Please Provide Valid Phone Number!!"
+      status:"failed!",
+      message: "Invalid Credentials...!"
   })
   const emailDb = await User.findOne({ email });
   const phoneDb = await User.findOne({ phone });
@@ -24,86 +28,82 @@ const register = async(req, res) => {
   let id = uuidv4();
   let apiKey = API(16);
   if(emailDb || phoneDb || usernameDb) return res.status(400).json({
-    message: "User already exists with this email, number or username...!",
+    message: "User already exists with this Credentials...!",
   })
     let date = new Date().toISOString().split("T")[0];
     
     let hash_password = await bcrypt.hash(password,10);
-    const userData = {
-      _uid:id,
-      username,
-      password:hash_password,
-      email,
-      phone:Number(phone),
-      apiKey,
-      usage: [{
-        date,
-        count: 0,
-      }],
-      created: date,
-    };
-    await User.create(userData);
-    const UserData = {
-      _uid:id,
-      username,
-      email,
-      phone:Number(phone),
-      apiKey,
-      usage: [{
-          date,
-          count: 0,
-        }],
-      created: date,
-    };
+    
+   let UserCreated =  await User.create({
+                       _uid:id,
+                       username,
+                       password:hash_password,
+                       email,
+                       phone:Number(phone),
+                       apiKey,
+                       usage: [{
+                         date,
+                         count: 0,
+                       }],
+                       created: date,
+                     });
+    
     return await res.status(201).send({
       status:"successful!",
-      userData:UserData,
       message: "User created successfully...!",
+      api_key: UserCreated.apiKey,
+      token: await UserCreated.generateAuthToken(),
     });
   } catch (error) {
     return res.status(500).send({
+      status:"failed!",
       message: "Something went wrong...!",
+      error: error.message
     })
-   }
-  };
+  }
+};
+
+
 
 const login = async(req, res) => {
   try {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({
-      message: "Missing username or password",
+      status:"failed!",
+      message: "Missing Credentials...!",
     });
   }
-  const user = await User.findOne({ email });
-  if (!user) {
+  const UserLogin = await User.findOne({ email });
+  if (!UserLogin) {
     return res.status(404).json({
-      message: "User not found",
+      status:"failed!",
+      message: "Invalid Credentials...!",
     });
   }
 
-  if (!bcrypt.compare(password,user.password)) {
+  if (!bcrypt.compare(password,UserLogin.password)) {
     return res.status(401).json({
-      message: "Incorrect password",
+      status:"failed!",
+      message: "InCorrect Credentials...!",
     });
   }
-    const UserData = {
-      _uid:user._uid,
-      username:user.username,
-      email:user.email,
-      phone:user.phone,
-      apiKey:user.apiKey,
-      usage:user.usage,
-      created:user.created,
-    };
+    
   return res.status(200).json({
     status: "successful!",
-    userData:UserData,
     message: "User logged in successfully",
+    api_key: UserLogin.apiKey,
+    token:await UserLogin.generateAuthToken()
   });
   } catch (error) {
-    throw new Error(error);
+    return res.status(500).send({
+      status:"failed!",
+      message: "Something went wrong...!",
+      error: error.message
+    })
   }
-  };
+};
+
+
 
 export { register,login }
