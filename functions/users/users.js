@@ -51,8 +51,7 @@ const register = async(req, res) => {
     return await res.status(201).send({
       status:"successful!",
       message: "User created successfully...!",
-      api_key: UserCreated.apiKey,
-      token: await UserCreated.generateAuthToken(),
+      api_key: UserCreated.apiKey
     });
   } catch (error) {
     return res.status(500).send({
@@ -93,7 +92,6 @@ const login = async(req, res) => {
     status: "successful!",
     message: "User logged in successfully",
     api_key: UserLogin.apiKey,
-    token:await UserLogin.generateAuthToken()
   });
   } catch (error) {
     return res.status(500).send({
