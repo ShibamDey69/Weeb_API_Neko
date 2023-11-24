@@ -1,19 +1,20 @@
 import zAnime from 'z-anime';
-import axios from 'axios';
+import { ANIME } from '@consumet/extensions';
+const Neko = new ANIME.Zoro();
 const BASE_URL = 'https://aniwatch.to/';
 
 
 const animeSearch = async (req, res) => {
   try {
-    let anime = req.query.anime;
+    let anime = req.query.q;
     let page = req.query.page || 1;
     if (!anime) return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "Please Provide A Search Term!!"
     })
-    const response = await axios.get(`https://api.consumet.org/anime/zoro/${anime}?page=${page}`);
-    if (response.data == "") return res.status(404).send({
+    const response = await Neko.search(anime,page);
+    if (response == "") return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "No Results Found!!"
@@ -23,7 +24,7 @@ const animeSearch = async (req, res) => {
       response: "successful!!",
       creator: global.creator,
       response: "successful!!",
-      data: response.data
+      data: response
     })
   } catch (error) {
     await res.status(500).send({
@@ -409,14 +410,14 @@ const animeDub = async (req, res) => {
 
 const animeDetails = async (req, res) => {
   try {
-    let anime = req.query.id
-    if (!anime) return res.status(404).send({
+    let id = req.params.id
+    if (!id) return res.status(404).send({
       status: 404,
       response: "failed!!",
-      reason: "Please Provide A Search Term!!"
+      reason: "Please Provide A Id!!"
     })
-    let response = await axios.get(`https://api.consumet.org/anime/zoro/info?id=${anime}`)
-    if (response.data == "") return res.status(404).send({
+    let response = await Neko.fetchAnimeInfo(id)
+    if (response == "") return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "No Results Found!!"
@@ -425,7 +426,7 @@ const animeDetails = async (req, res) => {
       status: 200,
       creator: global.creator,
       response: "successful!!",
-      data: response.data
+      data: response
     })
   } catch (error) {
     await res.status(500).send({
@@ -438,26 +439,16 @@ const animeDetails = async (req, res) => {
 
 const animeStreamUrl = async (req, res) => {
   try {
-    let url = req.query.q
+    let id = req.params.id
     let server = req.query.server || `vidcloud`
-    if (!url) return res.status(404).send({
+    if (!id) return res.status(404).send({
       status: 404,
       response: "failed!!",
-      reason: "Please Provide A Episode URL!!"
+      reason: "Please Provide A Episode Id!!"
     })
-    if (url.includes(BASE_URL)) {
-    let episodeId = url?.split("watch/")[1];
-    let eId = episodeId?.split("?")[0]
-    let episode = url.split("?ep=")[1]
-    if (!url.includes(episodeId)) {
-      return res.status(400).send({
-        status: 400,
-        response: "failed!!",
-        message: "Something Wrong With The URl!!"
-      })
-    }
-    let response = await axios.get(`https://api.consumet.org/anime/zoro/watch?episodeId=${eId}$episode$${episode}$both&server=${server}`)
-    if (response.data.message == "") return res.status(404).send({
+    
+  let response = await Neko.fetchEpisodeSources(id, server)
+    if (response.message == "") return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "No Results Found!!"
@@ -466,22 +457,8 @@ const animeStreamUrl = async (req, res) => {
       status: 200,
       creator: global.creator,
       response: "successful!!",
-      data: response.data
+      data: response
     })
-  } else {
-  let response = await axios.get(`https://api.consumet.org/anime/zoro/watch?episodeId=${url}&server=${server}`)
-    if (response.data.message == "") return res.status(404).send({
-      status: 404,
-      response: "failed!!",
-      reason: "No Results Found!!"
-    })
-    return res.status(200).send({
-      status: 200,
-      creator: global.creator,
-      response: "successful!!",
-      data: response.data
-    })
-  }
   } catch (error) {
     await res.status(500).send({
       status: 500,

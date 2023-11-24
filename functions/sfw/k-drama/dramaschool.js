@@ -1,18 +1,20 @@
-import axios from 'axios';
+import { MOVIES } from '@consumet/extensions';
+const dramacool = new MOVIES.DramaCool();
+
 
 export async function dramaSchoolSearch(req, res) {
-  let { query } = req.query;
+  let { q } = req.query;
   let page = req.query.page || 1;
-  page = Number(page)
-  if (!query) return res.status(400).send({
+   
+  if (!q) return res.status(400).send({
     status:400,
     response:"failed!!",
     reason:"No query provided!"
   })
   try {
-    const movie = await axios.get(`https://api.consumet.org/movies/dramacool/${query}`, { params: { page: page } });
+    const response = await dramacool.search(q, Number(page));
 
-    let response = movie.data;
+    
     if(response.resluts == "") 
       return await res.send({
       status:400,
@@ -26,6 +28,7 @@ export async function dramaSchoolSearch(req, res) {
             data:response
           });
     } catch (error) {
+    console.log(error);
       return res.status(500).send({
       status:500,
       response:"failed!!",
@@ -35,15 +38,16 @@ export async function dramaSchoolSearch(req, res) {
 }
 
 export async function dramaSchoolInfo(req, res) {
-  let { id } = req.query;
+  let { id,type } = req.params;
   if (!id) return res.status(400).send({
     status:400,
     response:"failed!!",
     reason:"No id provided!"
   })
   try {
-    const movie = await axios.get(`https://api.consumet.org/movies/dramacool/info?id=${id}`);
-    let response = movie.data;
+    const response = await dramacool
+    .fetchMediaInfo(`${type}/${id}`)
+    
     if(response.resluts == "") 
       return await res.send({
       status:400,
@@ -66,22 +70,17 @@ export async function dramaSchoolInfo(req, res) {
 }
 
 export async function dramaSchoolEpisode(req, res) {
-  let mediaId = req.query.id
-  let episodeId = req.query.episode;
-  let server = req.query.server || "asianload";
-  if(!mediaId) return res.status(400).send({
-    status:400,
-    response:"failed!!",
-    reason:"No mid provided!"
-  })
+  let episodeId = req.params.id;
+ 
   if (!episodeId) return res.status(400).send({
     status:400,
     response:"failed!!",
     reason:"No episode provided!"
   })
   try {
-    const movie = await axios.get(`https://api.consumet.org/movies/dramacool/watch?episodeId=${episodeId}&mediaId=${mediaId}&server=${server}`);
-    let response = movie.data;
+    const response = await dramacool
+    .fetchEpisodeSources(episodeId)
+    
     if(response.resluts == "") 
       return await res.send({
       status:400,

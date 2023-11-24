@@ -1,17 +1,18 @@
-import axios from 'axios';
+import { MOVIES } from '@consumet/extensions';
+const viewAsian = new MOVIES.ViewAsian();
+
 
 export async function asianSearch(req, res) {
-  let { query } = req.query;
+  let { q } = req.query;
   let page = req.query.page || 1;
-  page = Number(page)
-  if (!query) return res.status(400).send({
+   
+  if (!q) return res.status(400).send({
     status:404,
     response:"failed!!",
     reason:"No query provided!"
   })
   try {
-    const movie = await axios.get(`https://api.consumet.org/movies/viewasian/${query}?page=${page}`);
-    let response = movie.data;
+    let response = await viewAsian.search(q,Number(page));
     if(response.resluts == "") 
       return await res.send({
       status:404,
@@ -34,15 +35,15 @@ export async function asianSearch(req, res) {
 }
 
 export async function asianInfo(req, res) {
-  let { id } = req.query;
+  let { id ,type } = req.params;
   if (!id) return res.status(400).send({
     status:404,
     response:"failed!!",
     reason:"No id provided!"
   })
   try {
-    const movie = await axios.get(`https://api.consumet.org/movies/viewasian/info?id=${id}`);
-    let response = movie.data;
+    let response = await viewAsian
+      .fetchMediaInfo(`${type}/${id}`);
     if(response.resluts == "")
       return await res.status(404).send({
       status:404,
@@ -65,8 +66,7 @@ export async function asianInfo(req, res) {
 }
 
 export async function asianEpisode(req, res) {
-  let { id } = req.query;
-  let episode = req.query.episode;
+  let episodeId = req.params.id;
   let server = req.query.server || "asianload";
   if (!id) return res.status(400).send({
     status:404,
@@ -79,8 +79,8 @@ export async function asianEpisode(req, res) {
     message:"No episode provided!"
   })
   try {
-    const movie = await axios.get(`https://api.consumet.org/movies/viewasian/watch?episodeId=${episode}&mediaId=${id}&server=${server}`);
-    let response = movie.data;
+    let response = await viewAsian
+        .fetchEpisodeSources(episodeId, server);
     if(response.resluts == "") 
       return await res.send({
       status:404,

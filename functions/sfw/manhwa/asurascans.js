@@ -2,7 +2,7 @@ import neko from 'asurascans_scraper';
 
 export async function asuraSearch(req, res) {
   try {
-    let q = req.query.name;
+    let q = req.query.q;
     let page = req.query.page || 1;
     if (!q) return res.send({
       status: 404,
@@ -78,7 +78,7 @@ export async function asuraLastUpdate(req, res) {
 
 export async function asuraEpDownloader(req, res) {
   try {
-    let q = req.query.url;
+    let q = req.query.q;
     if (!q) return res.send({
       status: 404,
       response: "failed!!",
@@ -101,7 +101,7 @@ export async function asuraEpDownloader(req, res) {
 
 export async function asuraDetails(req, res) {
   try {
-    let q = req.query.url;
+    let q = req.query.q;
     if (!q) return res.send({
       status: 404,
       response: "failed!!",
@@ -124,7 +124,7 @@ export async function asuraDetails(req, res) {
 
 export async function asuraPdf(req, res) {
   try {
-    let q = req.query.url;
+    let q = req.query.q;
     if (!q) return res.send({
       status: 404,
       response: "failed!!",

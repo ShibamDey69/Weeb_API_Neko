@@ -4,18 +4,17 @@ import { ANIME } from '@consumet/extensions';
 let gogo = new ANIME.Gogoanime();
 export async function animegogoName(req, res) {
   try {
-    let anime = req.query.anime;
+    let q = req.query.q;
     let page = req.query.page || 1;
-    if (!anime) return res.status(404).send({
+    if (!q) return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "Please Provide A Search Term!!"
     })
-    const response = await gogo.search(anime, page);
+    const response = await gogo.search(q, page);
     
     return res.status(200).send({
       stauts: 200,
-      response: "successful!!",
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -33,7 +32,7 @@ export async function animegogoName(req, res) {
 
 export async function gogoanimeInfo(req,res) {
   try {
-    let animeId = req.query.id
+    let animeId = req.params.id
     if (!animeId) return res.status(404).send({
       status: 404,
       response: "failed!!",
@@ -59,7 +58,7 @@ export async function gogoanimeInfo(req,res) {
 
 export async function gogoanimeEpisode(req, res) {
   try {
-    let EpisodeId = req.query.id;
+    let EpisodeId = req.params.id;
     let server = req.query.server || "gogocdn";
     if (!EpisodeId) return res.status(404).send({
       status: 404,

@@ -59,8 +59,8 @@ router.route('/anime/aniwatch/airing').get(animeAiring);
 router.route('/anime/aniwatch/upcoming').get(animeUpcoming);
 router.route('/anime/aniwatch/popular').get(animePopular);
 router.route('/anime/aniwatch/movie').get(animeMovie);
-router.route('/anime/aniwatch/info').get(animeDetails);
-router.route('/anime/aniwatch/streamurl').get(animeStreamUrl);
+router.route('/anime/aniwatch/info/:id').get(animeDetails);
+router.route('/anime/aniwatch/episode/:id').get(animeStreamUrl);
 router.route('/anime/aniwatch/updated').get(animeUpdated);
 router.route('/anime/aniwatch/genres/:genre').get(animeGenre);
 router.route('/anime/aniwatch/latest').get(animeLatest);
@@ -73,8 +73,8 @@ router.route('/anime/aniwatch/completed').get(animeComplete);
 router.route('/anime/aniwatch/tv').get(animeTv)
 
 router.route('/anime/gogoanime/search/').get(animegogoName);
-router.route('/anime/gogoanime/info/').get(gogoanimeInfo);
-router.route('/anime/gogoanime/streamurl/').get(gogoanimeEpisode);
+router.route('/anime/gogoanime/info/:id/').get(gogoanimeInfo);
+router.route('/anime/gogoanime/episode/:id/').get(gogoanimeEpisode);
 
 /****** GIF Routes ******/
 router.route('/anime/gifs/:gif').get(gifs)
@@ -133,19 +133,19 @@ router.route('/manhwa/asurascans/chapter/pdf').get(asuraPdf)
 
 /** DRAMASCHOOL ROUTES */
 router.route('/kdrama/dramaschool/search/').get(dramaSchoolSearch)
-router.route('/kdrama/dramaschool/info/').get(dramaSchoolInfo)
-router.route('/kdrama/dramaschool/episode/').get(dramaSchoolEpisode)
+router.route('/kdrama/dramaschool/info/:type/:id').get(dramaSchoolInfo)
+router.route('/kdrama/dramaschool/episode/:id').get(dramaSchoolEpisode)
 
 /** VIEWASIAN ROUTES*/
 router.route('/kdrama/viewasian/search/').get(asianSearch)
-router.route('/kdrama/viewasian/info/').get(asianInfo)
-router.route('/kdrama/viewasian/episode/').get(asianEpisode)
+router.route('/kdrama/viewasian/info/:type/:id').get(asianInfo)
+router.route('/kdrama/viewasian/episode/:id').get(asianEpisode)
 
 /** SEARCH ROUTES */
 router.route("/search/google/search").get(google)
 
 /**AI ROUTES**/
-router.route("/ai/character/").get(characterAi)
+router.route("/ai/character/:charid/:chatid").get(characterAi)
 /** MOVIE ROUTES **/
 router.route("/movie/bodyflix/search/").get(BodyFlixSearch)
 router.route("/movie/bodyflix/info/").get(BodyFlixWatch)
