@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 const userSchema = new mongoose.Schema({
   _uid: {
     type: String,
