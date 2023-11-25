@@ -1,15 +1,21 @@
 import express from 'express';
-import { validate,SignupSchema,LoginSchema } from '../MiddleWare/validate-zop.js';
-import { register, login } from "../functions/users/users.js"
+import path from 'path';
+import cors from 'cors';
+import { register, login , verification } from "../functions/users/users.js"
 const router = express.Router();
+const __dirname = path.resolve();
+let pathroute = path.join( __dirname, 'public');
+router.use(express.json())
+router.use(cors())
+router.use(express.static(pathroute))
+router.route("/").get((req,res) => {
+res.sendFile(path.join(pathroute,'/index.html'))
+})
 
-router.route("/").get((req, res) => {
-  res.send("Hello...!");
-});
+router.route("/register").get(register);
 
-router.route("/register").post(validate(SignupSchema) ,register);
+router.route("/verify/:id/:token").get(verification);
 
-router.route("/login").post(validate(LoginSchema)
-,login);
+router.route("/login").get(login);
 
 export default router

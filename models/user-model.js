@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+
+
 const userSchema = new mongoose.Schema({
   _uid: {
     type: String,
@@ -48,11 +50,21 @@ const userSchema = new mongoose.Schema({
   created: {
     type: String,
     default: Date.now,
+  },
+  verified: {
+    type: Boolean,
+    default: false
+  },
+  token: {
+    type: String,
+    required: true,
   }
 });
 
 
 const User = new mongoose.model('User', userSchema);
+
+
 export default User
     
   
