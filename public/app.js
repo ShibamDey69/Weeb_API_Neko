@@ -35,12 +35,15 @@ postData(`${sign_up_form.action}?email=${sign_up_email.value}&username=${sign_up
 }).catch(e => {
     alert("error")
 }) ;
-  
 });
 
 sign_in_form.addEventListener("submit", async(e) => {
   e.preventDefault();
   postData(`${sign_in_form.action}?email=${sign_in_email.value}&password=${sign_in_password.value}`).then((data) => {
-    alert(data.apikey);
+    if(data.status === "successful!"){
+    alert(`api_key=${data.api_key}`);
+    } else {
+      alert(data.message)
+    }
    }).catch(e => alert(e.message))
 });
