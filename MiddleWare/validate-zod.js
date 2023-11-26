@@ -52,7 +52,7 @@ const validate = (schema) => async(req, res, next) => {
     if (error) {
       return res.status(400).json({
         status: "failed!",
-        message: error.message,
+        message: JSON.parse(error.message),
       });
     } else {
       next();

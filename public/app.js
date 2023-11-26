@@ -36,7 +36,7 @@ const dataAlert = async(textData) => {
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-          background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+          background: "linear-gradient(to right, #18ff20, #00d4ff)",
         },
       // Callback after click
       }).showToast();
@@ -69,6 +69,7 @@ sign_in_btn.addEventListener("click", () => {
 });
 
 sign_up_form.addEventListener("submit", async(e) => {
+  try{
   e.preventDefault();
 let data = await postData(`${sign_up_form.action}`,{
   "email":sign_up_email.value,
@@ -79,12 +80,19 @@ let data = await postData(`${sign_up_form.action}`,{
   if(data.status === "successful!"){
     container.classList.remove("sign-up-mode");
    await dataAlert(data.message)
-    } else {
-   await errorAlert(data.message)
+    } else if(data.status === "failed!"){
+    data.message.map(async(data) => {
+      await errorAlert(data.message)
+    })
+  }
+} catch(err) {
+    console.log(err)
+    await errorAlert(err.message)
   }
 });
 
 sign_in_form.addEventListener("submit", async(e) => {
+  try{
   e.preventDefault();
 let data = await postData(`${sign_in_form.action}`,{
     "email":sign_in_email.value,
@@ -92,7 +100,13 @@ let data = await postData(`${sign_in_form.action}`,{
   })
     if(data.status === "successful!"){
    await dataAlert(data.message)
-    } else {
-    await errorAlert(data.message)
+    } else if(data.status === "failed!") {
+      data.message.map(async(data) => {
+        await errorAlert(data.message)
+      })
     }
+  } catch (err) {
+    cnosole.log(err)
+    await errorAlert(err.message)
+  }
 });
