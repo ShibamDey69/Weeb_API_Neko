@@ -58,7 +58,7 @@ const register = async(req, res) => {
           token: await crypto.randomBytes(32).toString("hex")
                      });
     
-    let verifyLink = `${process.env.DOMAIN}/verify/${user.id}/${user.token}`;
+    let verifyLink = `${process.env.DOMAIN}/verify/${user._id}/${user.token}`;
      
      await res.status(201).send({
       status:"successful!",
@@ -104,10 +104,10 @@ const login = async(req, res) => {
 
   if(UserLogin?.verified === false) {
     
-      let verifyLink = `${process.env.DOMAIN}/verify/${UserLogin.id}/${UserLogin.token}`;
+      let verifyLink = `${process.env.DOMAIN}/verify/${UserLogin._id}/${UserLogin.token}`;
       
      res.status(201).json({
-      status:"successful!",
+      status:"failed!",
       message: "Your Account is not verified...!So we have sent another verification link to your email...!",
     });
   
@@ -130,7 +130,7 @@ if (bcrypt.compare(password,UserLogin.password)) return res.status(200).json({
 
 let verification = async (req, res) => {
 	try {
-		const user = await User.findOne({ id: req.params.id });
+		const user = await User.findOne({ _id: req.params.id });
     
     if(!user) return res.status(404).send({
       status:"failed!",
@@ -142,7 +142,7 @@ let verification = async (req, res) => {
     });
     if(user.verified === false) {
     if(user.token = req.params.token){
-      await User.updateOne({ _uid: user._uid, verified: true }) 
+      await User.updateOne({ _id: user._id, verified: true }) 
     }
     
 		return res.status(200).send({ 
