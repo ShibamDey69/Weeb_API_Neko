@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import User from '../../models/user-model.js';
 import { sendEmail } from '../../utils/sendEmail.js';
+ 
 const API = (len = 16) => {
   return [...Array(len)]
   .map((e) => ((Math.random() * 36) | 0).toString(36))
@@ -14,7 +15,7 @@ let date = new Date().toISOString().split("T")[0];
 
 const register = async(req, res) => {
   try {
-    const { username, password, email ,phone } = req.query;
+    const { username, password, email ,phone } = req.body;
     
   if (!username || !password || !email || !phone) {
     return res.status(400).json({
@@ -79,7 +80,7 @@ const register = async(req, res) => {
 
 const login = async(req, res) => {
   try {
-  const { email, password } = req.query;
+  const { email, password } = req.body;
     
   if (!email || !password) {
     return res.status(400).json({
@@ -94,8 +95,10 @@ const login = async(req, res) => {
       message: "Invalid Credentials...!",
     });
   }
-
-  if (!bcrypt.compare(password,UserLogin.password)) {
+    
+let Pass = await bcrypt.compare(password,UserLogin.password)
+    
+  if (!Pass) {
     return res.status(401).json({
       status:"failed!",
       message: "InCorrect Credentials...!",
@@ -114,7 +117,7 @@ const login = async(req, res) => {
     return await sendEmail(email,"Verification Mail",verifyLink)
     }
 
-if (bcrypt.compare(password,UserLogin.password)) return res.status(200).json({
+if (Pass) return res.status(200).json({
     status: "successful!",
     message: "User logged in successfully",
     api_key: UserLogin.apiKey,
@@ -128,21 +131,27 @@ if (bcrypt.compare(password,UserLogin.password)) return res.status(200).json({
   }
 };
 
+
 let verification = async (req, res) => {
 	try {
-		const user = await User.findOne({ _id: req.params.id });
+    
+		const user = await User.findOne({    _id: req.params.id,
+  token: req.params.token 
+        });
     
     if(!user) return res.status(404).send({
       status:"failed!",
       message: "Invalid Credentials...!"
     });
+    
     if(user.verified === true) return res.status(401).send({
       status:"failed!",
       message: "User already verified...!"
     });
+    
     if(user.verified === false) {
     if(user.token = req.params.token){
-      await User.updateOne({ _id: user._id, verified: true }) 
+      await User.updateOne({ _id: user._id}, {$set:{verified: true} }) 
     }
     
 		return res.status(200).send({ 
@@ -150,7 +159,6 @@ let verification = async (req, res) => {
       message: "Email verified successfully...!" });
     }
 	} catch (error) {
-    console.log(error)
 		res.status(500).send({ message: "Internal Server Error...!" });
   }
 }

@@ -10,10 +10,18 @@ const sign_up_phone = document.querySelector(".sign-up-form #number");
 const sign_in_email = document.querySelector(".sign-in-form #email");
 const sign_in_password = document.querySelector(".sign-in-form #password");
 // Example POST method implementation:
-async function postData(url = "") {
+async function postData(url = "",data= {}) {
   try {
   // Default options are marked with *
-  const response = await fetch(url);
+  const response = await fetch(url,
+                               {
+                                 method: "POST",
+                                 headers: {
+  "Content-Type": "application/json",
+  "Accept": "application/json"
+                                 },
+  body:JSON.stringify(data)  
+                               });
   return response.json(); // parses JSON response into native JavaScript objects
   } catch (err) {
     console.log(err);
@@ -30,16 +38,24 @@ sign_in_btn.addEventListener("click", () => {
 
 sign_up_form.addEventListener("submit", async(e) => {
   e.preventDefault();
-postData(`${sign_up_form.action}?email=${sign_up_email.value}&username=${sign_up_name.value}&phone=${sign_up_phone.value}&password=${sign_up_password.value}`).then((data) => {
+postData(`${sign_up_form.action}`,{
+  "email":sign_up_email.value,
+  "password":sign_up_password.value,
+  "username":sign_up_name.value,
+  "phone":sign_up_phone.value
+}).then((data) => {
   alert(data.message)
 }).catch(e => {
-    alert("error")
+    console.log(e)
 }) ;
 });
 
 sign_in_form.addEventListener("submit", async(e) => {
   e.preventDefault();
-  postData(`${sign_in_form.action}?email=${sign_in_email.value}&password=${sign_in_password.value}`).then((data) => {
+  postData(`${sign_in_form.action}`,{
+    "email":sign_in_email.value,
+    "password":sign_in_password.value
+  }).then((data) => {
     if(data.status === "successful!"){
     alert(`api_key=${data.api_key}`);
     } else {
