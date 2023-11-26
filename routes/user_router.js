@@ -16,10 +16,7 @@ res.sendFile(path.join(pathroute,'/index.html'))
 router.route("/register").post(validate(SignupSchema),register);
 
 router.route("/verify/:id/:token").get(verification);
-router.route("/h").post((req,res) => {
-  console.log(req.body)
-  res.send(req.body)
-})
+
 router.route("/login").post(validate(LoginSchema),login);
 
 export default router

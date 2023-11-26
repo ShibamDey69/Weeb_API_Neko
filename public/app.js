@@ -81,9 +81,13 @@ let data = await postData(`${sign_up_form.action}`,{
     container.classList.remove("sign-up-mode");
    await dataAlert(data.message)
     } else if(data.status === "failed!"){
-    data.message.map(async(data) => {
-      await errorAlert(data.message)
-    })
+    if(typeof data.message === "string") {
+    await errorAlert(data.message)
+          } else {
+          data.message.map(async(data) => {
+            await errorAlert(data.message)
+          })
+       }
   }
 } catch(err) {
     console.log(err)
@@ -104,10 +108,14 @@ let data = await postData(`${sign_in_form.action}`,{
                    ${data.message}
                    your apikey is ${data.api_key}`)
     } else if(data.status === "failed!") {
+      if(typeof data.message === "string") {
+await errorAlert(data.message)
+      } else {
       data.message.map(async(data) => {
         await errorAlert(data.message)
       })
-    }
+   }
+}
   } catch (err) {
     cnosole.log(err)
     await errorAlert(err.message)
