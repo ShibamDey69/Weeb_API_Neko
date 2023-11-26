@@ -99,8 +99,10 @@ let data = await postData(`${sign_in_form.action}`,{
     "password":sign_in_password.value
   })
     if(data.status === "successful!"){
-   await dataAlert(data.message,
-                   `welcome ${data.username}..! your apikey is ${data.api_key}`)
+   await dataAlert(
+                   `
+                   ${data.message}
+                   your apikey is ${data.api_key}`)
     } else if(data.status === "failed!") {
       data.message.map(async(data) => {
         await errorAlert(data.message)
