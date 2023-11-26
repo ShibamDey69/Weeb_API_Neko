@@ -9,6 +9,38 @@ const sign_up_name = document.querySelector(".sign-up-form #username");
 const sign_up_phone = document.querySelector(".sign-up-form #number");
 const sign_in_email = document.querySelector(".sign-in-form #email");
 const sign_in_password = document.querySelector(".sign-in-form #password");
+
+const errorAlert = async(textData) => {
+  await Toastify({
+  text: textData,
+  duration: 5000,
+  newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+  },
+// Callback after click
+}).showToast();
+}
+
+const dataAlert = async(textData) => {
+  await Toastify({
+        text: textData,
+        duration: 5000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        },
+      // Callback after click
+      }).showToast();
+}
 // Example POST method implementation:
 async function postData(url = "",data= {}) {
   try {
@@ -38,28 +70,29 @@ sign_in_btn.addEventListener("click", () => {
 
 sign_up_form.addEventListener("submit", async(e) => {
   e.preventDefault();
-postData(`${sign_up_form.action}`,{
+let data = await postData(`${sign_up_form.action}`,{
   "email":sign_up_email.value,
   "password":sign_up_password.value,
   "username":sign_up_name.value,
   "phone":sign_up_phone.value
-}).then((data) => {
-  alert(data.message)
-}).catch(e => {
-    console.log(e)
-}) ;
+})
+  if(data.status === "successful!"){
+    container.classList.remove("sign-up-mode");
+   await dataAlert(data.message)
+    } else {
+   await errorAlert(data.message)
+  }
 });
 
 sign_in_form.addEventListener("submit", async(e) => {
   e.preventDefault();
-  postData(`${sign_in_form.action}`,{
+let data = await postData(`${sign_in_form.action}`,{
     "email":sign_in_email.value,
     "password":sign_in_password.value
-  }).then((data) => {
+  })
     if(data.status === "successful!"){
-    alert(`api_key=${data.api_key}`);
+   await dataAlert(data.message)
     } else {
-      alert(data.message)
+    await errorAlert(data.message)
     }
-   }).catch(e => alert(e.message))
 });
