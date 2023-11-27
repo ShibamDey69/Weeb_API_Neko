@@ -23,6 +23,7 @@ const ytVideo = async (req,res) => {
       data: response.data
     })
   } catch (error) {
+    console.log(error)
     return await res.status(500).send({
       status: 500,
       response: "failed!!",

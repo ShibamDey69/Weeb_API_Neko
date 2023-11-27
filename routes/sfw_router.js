@@ -28,7 +28,7 @@ import { mangakakalot, mangakakalotId, mangakakalotEpisode } from '../functions/
 import { asuraSearch,asuraLastUpdate,asuraPopularToday,asuraPopular,asuraPdf,asuraDetails,asuraEpDownloader } from '../functions/sfw/manhwa/asurascans.js';
 import {dramaSchoolSearch,dramaSchoolInfo , dramaSchoolEpisode} from '../functions/sfw/k-drama/dramaschool.js';
 import { asianSearch, asianInfo, asianEpisode } from '../functions/sfw/k-drama/viewasian.js';
-import { BodyFlixWatch, BodyFlixSearch } from '../functions/sfw/movie/bodyflix.js'
+//import { BodyFlixWatch, BodyFlixSearch } from '../functions/sfw/movie/bodyflix.js'
 import { google } from '../functions/sfw/search/google.js';
 
 
@@ -147,6 +147,5 @@ router.route("/search/google/search").get(google)
 /**AI ROUTES**/
 router.route("/ai/character/:charid/:chatid").get(characterAi)
 /** MOVIE ROUTES **/
-router.route("/movie/bodyflix/search/").get(BodyFlixSearch)
-router.route("/movie/bodyflix/info/").get(BodyFlixWatch)
+
 export default router

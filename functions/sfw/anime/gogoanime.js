@@ -1,7 +1,5 @@
-import axios from 'axios';
-import { ANIME } from '@consumet/extensions';
-
-let gogo = new ANIME.Gogoanime();
+import GogoAnime from '../../../scrappers/gogoanime.js'
+const gogo = new GogoAnime()
 export async function animegogoName(req, res) {
   try {
     let q = req.query.q;
@@ -20,7 +18,6 @@ export async function animegogoName(req, res) {
       data: response
     })
   } catch (error) {
-   console.log(error);
     await res.status(500).send({
       status: 500,
       response: "failed!!",
@@ -38,7 +35,7 @@ export async function gogoanimeInfo(req,res) {
       response: "failed!!",
       reason: "Please Provide AnimeId...!!"
     })
-    let response = await gogo.fetchAnimeInfo(animeId);
+    let response = await gogo.info(animeId);
     
     return res.status(200).send({
       status: 200,
@@ -59,13 +56,12 @@ export async function gogoanimeInfo(req,res) {
 export async function gogoanimeEpisode(req, res) {
   try {
     let EpisodeId = req.params.id;
-    let server = req.query.server || "gogocdn";
     if (!EpisodeId) return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "Please Provide A EpisodeId...!!"
     })
-    let response = await gogo.fetchEpisodeSources(EpisodeId,server);
+    let response = await gogo.episode(EpisodeId);
     
     return res.status(200).send({
       status: 200,
@@ -73,12 +69,11 @@ export async function gogoanimeEpisode(req, res) {
       response: "successful!!",
       data: response
     })
-    
   } catch (error) {
     await res.status(500).send({
       status: 500,
       response: "failed!!",
-      reason: "An Internal Error Occured!!", error 
+      reason: "An Internal Error Occured!!"
     })
   }
 }
