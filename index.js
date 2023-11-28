@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 8080;
 import routes from './routes/user_router.js'
 import nsfw_routes from './routes/nsfw_router.js'
 import sfw_routes from './routes/sfw_router.js'
+
 app.use(cors())
 app.use(express.json())
 app.set('json spaces', 4)

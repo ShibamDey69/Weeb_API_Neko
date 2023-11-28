@@ -121,13 +121,13 @@ router.route('/manga/mangakakalot/info/:id').get(mangakakalotId)
 /****** MANHWA Routes ******/
 
 /** ASURASCANS ROUTES*/
-router.route('/manhwa/asurascans/chapter/').get(asuraEpDownloader)
+router.route('/manhwa/asurascans/chapter/:id').get(asuraEpDownloader)
 router.route('/manhwa/asurascans/search/').get(asuraSearch)
-router.route('/manhwa/asurascans/info/').get(asuraDetails)
+router.route('/manhwa/asurascans/info/:id').get(asuraDetails)
 router.route('/manhwa/asurascans/latest/').get(asuraLastUpdate)
 router.route('/manhwa/asurascans/popular/').get(asuraPopular)
 router.route('/manhwa/asurascans/popular/today').get(asuraPopularToday)
-router.route('/manhwa/asurascans/chapter/pdf').get(asuraPdf)
+router.route('/manhwa/asurascans/chapter/pdf/:id').get(asuraPdf)
 
 /** K-DRAMA ROUTES*/
 

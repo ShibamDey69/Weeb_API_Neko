@@ -78,11 +78,11 @@ export async function asuraLastUpdate(req, res) {
 
 export async function asuraEpDownloader(req, res) {
   try {
-    let q = req.query.q;
+    let q = req.params.id;
     if (!q) return res.send({
       status: 404,
       response: "failed!!",
-      reason: "Please Provide Url!!",
+      reason: "Please Provide Id!!",
     });
     let response = await neko.epDownloader(q);
     return await res.send({
@@ -101,11 +101,11 @@ export async function asuraEpDownloader(req, res) {
 
 export async function asuraDetails(req, res) {
   try {
-    let q = req.query.q;
+    let q = req.params.id;
     if (!q) return res.send({
       status: 404,
       response: "failed!!",
-      reason: "Please Provide Url!!",
+      reason: "Please Provide Id!!",
     });
     let response = await neko.details(q);
     return await res.send({
@@ -124,11 +124,11 @@ export async function asuraDetails(req, res) {
 
 export async function asuraPdf(req, res) {
   try {
-    let q = req.query.q;
+    let q = req.params.id;
     if (!q) return res.send({
       status: 404,
       response: "failed!!",
-      reason: "Please Provide Url!!",
+      reason: "Please Provide Id!!",
     });
     let response = await neko.pdf(q);
     return await res.contentType("application/pdf")
