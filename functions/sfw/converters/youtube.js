@@ -21,12 +21,12 @@ const ytVideo = async (req,res) => {
     let response = await ytdl.mp4(text)
     
     return await res.status(200).send({
+      status:200,
       creator: global.creator,
       response: "successful!!",
       data: response
     })
   } catch (error) {
-    console.log(error)
     return await res.status(500).send({
       status: 500,
       response: "failed!!",
@@ -54,12 +54,12 @@ const ytAudio = async (req,res) => {
     let response = await ytdl.mp3(text);
     
     return await res.status(200).send({
+      status:200,
       creator: global.creator,
       response: "successful!!",
       data: response
     })
   } catch (error) {
-    console.log(error)
     return await res.status(500).send({
       status: 500,
       response: "failed!!",

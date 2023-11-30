@@ -19,6 +19,7 @@ const instagram = async (req, res) => {
       reason: "Please Provide A Valid Instagram URL!!"
     })
     return await res.status(200).send({
+      status:200,
       creator: global.creator,
       response: "successful!!",
       data: response
