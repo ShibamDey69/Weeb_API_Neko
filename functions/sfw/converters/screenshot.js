@@ -9,7 +9,7 @@ import graph from '../../../scrappers/graphURL.js';
 
 const screenshot = async (req, res) => {
   try {
-    let text = req.query.url
+    let text = req.query.q
     if (!text) return res.status(404).send({
       status: 404,
       response: "failed!!",

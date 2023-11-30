@@ -1,26 +1,29 @@
-import ytdl from '../../../scrappers/ytdl.js';
+import NekoYtdl from '../../../scrappers/ytdl.js';
+let ytdl = new NekoYtdl()
+const ytRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})$/;
+                  
 
 const ytVideo = async (req,res) => {
   try {
-     let text = req.query.url
-     let quality = req.query.quality || "360p"
+     let text = req.query.q
     if (!text) return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "Please Provide A URL!!"
     })
  
-    if (!text.includes("https://youtu")) return res.status(400).send({
+    if (ytRegex.test(text)) return res.status(400).send({
       status: 400,
       response: "failed!!",
       reason: "Please Provide A YouTube URL!!"
     });
-   let response = await ytdl(text,"mp4",quality);
+    
+    let response = await ytdl.mp4(text)
     
     return await res.status(200).send({
       creator: global.creator,
       response: "successful!!",
-      data: response.data
+      data: response
     })
   } catch (error) {
     console.log(error)
@@ -35,19 +38,20 @@ const ytVideo = async (req,res) => {
 
 const ytAudio = async (req,res) => {
   try {
-    let text = req.query.url
+    let text = req.query.q
     if (!text) return res.status(404).send({
       status: 404,
       response: "failed!!",
       reason: "Please Provide A URL!!"
     })
  
-    if (!text.includes("https://youtu")) return res.status(400).send({
+    if (ytRegex.test(new URL(text))) return res.status(400).send({
       status: 400,
       response: "failed!!",
-      reason: "Please Provide A YouTube URL!!"
+      reason: "Please Provide A Valid YouTube URL!!"
     })
-    let response = await ytdl(text,"mp3");
+    
+    let response = await ytdl(text);
     
     return await res.status(200).send({
       creator: global.creator,

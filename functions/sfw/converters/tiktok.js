@@ -1,7 +1,7 @@
 import neko from 'mumaker';
 const tiktok = async (req, res) => {
   try {
-    let text = req.query.url
+    let text = req.query.q
     if (!text) return res.status(404).send({
       status: 404,
       response: "failed!!",
