@@ -55,6 +55,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  isChatBot: {
+    type: Boolean,
+    default: false
+  },
   token: {
     type: String,
     required: true,
