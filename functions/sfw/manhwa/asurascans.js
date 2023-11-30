@@ -12,6 +12,7 @@ export async function asuraSearch(req, res) {
     let response = await neko.search(q, page);
     return await res.send({
       status: 200,
+      creator:global.creator,
       response: "successful!!",
       data: response
     })
@@ -29,6 +30,7 @@ export async function asuraPopular(req, res) {
     let response = await neko.popular();
     return await res.send({
       status: 200,
+      creator:global.creator,
       response: "successful!!",
       data: response
     })
@@ -46,6 +48,7 @@ export async function asuraPopularToday(req, res) {
     let response = await neko.popularToday();
     return await res.send({
       status: 200,
+      creator:global.creator,
       response: "successful!!",
       data: response
     })
@@ -61,9 +64,10 @@ export async function asuraPopularToday(req, res) {
 export async function asuraLastUpdate(req, res) {
   try {
     let page = req.query.page || 1;
-    let response = await neko.lastUpdate();
+    let response = await neko.lastUpdate(page);
     return await res.send({
       status: 200,
+      creator,
       response: "successful!!",
       data: response
     })
@@ -87,6 +91,7 @@ export async function asuraEpDownloader(req, res) {
     let response = await neko.epDownloader(q);
     return await res.send({
       status: 200,
+      creator,
       response: "successful!!",
       data: response
     })
@@ -110,6 +115,7 @@ export async function asuraDetails(req, res) {
     let response = await neko.details(q);
     return await res.send({
       status: 200,
+      creator,
       response: "successful!!",
       data: response
     })
@@ -132,9 +138,9 @@ export async function asuraPdf(req, res) {
     });
     let response = await neko.pdf(q);
     return await res.contentType("application/pdf")
+      .status(200)
       .send(response)
   } catch (error) {
-    console.log(error);
     await res.send({
       status: 500,
       response: "failed!!",

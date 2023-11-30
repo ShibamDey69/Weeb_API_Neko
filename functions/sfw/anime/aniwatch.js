@@ -21,7 +21,6 @@ const animeSearch = async (req, res) => {
     })
     return res.status(200).send({
       stauts: 200,
-      response: "successful!!",
       creator: global.creator,
       response: "successful!!",
       data: response

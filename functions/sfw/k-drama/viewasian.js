@@ -13,7 +13,7 @@ export async function asianSearch(req, res) {
   })
   try {
     let response = await viewAsian.search(q,Number(page));
-    if(response.resluts == "") 
+    if(response.results == "") 
       return await res.send({
       status:404,
       response:"failed!!",
@@ -44,7 +44,7 @@ export async function asianInfo(req, res) {
   try {
     let response = await viewAsian
       .fetchMediaInfo(`${type}/${id}`);
-    if(response.resluts == "")
+    if(response.results == "")
       return await res.status(404).send({
       status:404,
       response:"failed!!",
@@ -73,7 +73,7 @@ export async function asianEpisode(req, res) {
     response:"failed!!",
     message:"No id provided!"
   })
-  if (!episode) return res.status(400).send({
+  if (!episodeId) return res.status(400).send({
     status:404,
     response:"failed!!",
     message:"No episode provided!"
@@ -81,7 +81,7 @@ export async function asianEpisode(req, res) {
   try {
     let response = await viewAsian
         .fetchEpisodeSources(episodeId, server);
-    if(response.resluts == "") 
+    if(response.results == "") 
       return await res.send({
       status:404,
       response:"failed!!",

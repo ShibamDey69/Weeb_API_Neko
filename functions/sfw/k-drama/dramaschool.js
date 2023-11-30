@@ -15,7 +15,7 @@ export async function dramaSchoolSearch(req, res) {
     const response = await dramacool.search(q, Number(page));
 
     
-    if(response.resluts == "") 
+    if(response.results == "") 
       return await res.send({
       status:400,
       response:"failed!!",
@@ -28,7 +28,6 @@ export async function dramaSchoolSearch(req, res) {
             data:response
           });
     } catch (error) {
-    console.log(error);
       return res.status(500).send({
       status:500,
       response:"failed!!",
@@ -48,7 +47,7 @@ export async function dramaSchoolInfo(req, res) {
     const response = await dramacool
     .fetchMediaInfo(`${type}/${id}`)
     
-    if(response.resluts == "") 
+    if(response.results == "") 
       return await res.send({
       status:400,
       response:"failed!!",
@@ -81,7 +80,7 @@ export async function dramaSchoolEpisode(req, res) {
     const response = await dramacool
     .fetchEpisodeSources(episodeId)
     
-    if(response.resluts == "") 
+    if(response.results == "") 
       return await res.send({
       status:400,
       response:"failed!!",
