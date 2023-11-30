@@ -5,7 +5,7 @@ export default class NekoYtdl {
   async mp4(url,quality = "360p") {
 
     const videoInfo = await ytdl.getInfo(url);
-console.log(quality)
+
              let format = ytdl.chooseFormat(videoInfo.formats, {
         format: quality,
         filter:"videoandaudio" 
