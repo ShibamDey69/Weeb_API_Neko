@@ -51,7 +51,7 @@ const ytAudio = async (req,res) => {
       reason: "Please Provide A Valid YouTube URL!!"
     })
     
-    let response = await ytdl(text);
+    let response = await ytdl.mp3(text);
     
     return await res.status(200).send({
       creator: global.creator,
@@ -59,6 +59,7 @@ const ytAudio = async (req,res) => {
       data: response
     })
   } catch (error) {
+    console.log(error)
     return await res.status(500).send({
       status: 500,
       response: "failed!!",
