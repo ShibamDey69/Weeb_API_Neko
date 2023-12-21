@@ -1,4 +1,4 @@
-import { idl } from 'i-downloader';
+import neko from 'i-downloader';
 
 const instagram = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ const instagram = async (req, res) => {
       response: "failed!!",
       reason: "Please Provide A Instagram URL!!"
     })
-    let response = await ydl(text)
+    let response = await neko.idl(text)
     if (response.data == ``) return res.status(400).send({
       status: 400,
       response: "failed!!",
