@@ -1,4 +1,5 @@
-import neko from 'mumaker';
+import { idl } from 'i-downloader';
+
 const instagram = async (req, res) => {
   try {
     let text = req.query.q
@@ -12,8 +13,8 @@ const instagram = async (req, res) => {
       response: "failed!!",
       reason: "Please Provide A Instagram URL!!"
     })
-    let response = await neko.instagram(text)
-    if (response == `[]`) return res.status(400).send({
+    let response = await ydl(text)
+    if (response.data == ``) return res.status(400).send({
       status: 400,
       response: "failed!!",
       reason: "Please Provide A Valid Instagram URL!!"
@@ -22,7 +23,7 @@ const instagram = async (req, res) => {
       status:200,
       creator: global.creator,
       response: "successful!!",
-      data: response
+      data: response.data
     })
   } catch (error) {
     await res.status(500).send({
