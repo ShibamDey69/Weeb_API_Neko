@@ -21,6 +21,7 @@ const xvideosSingle = async (req, res) => {
       videoUrl: response[random].video
     })
     return await res.status(200).send({
+      status:200,
       creator: global.creator,
       response: "successful!!",
       data: response2
@@ -60,6 +61,7 @@ const xvideosMultiple = async (req, res) => {
     }
 
     return await res.status(200).send({
+      status:200,
       creator: global.creator,
       response: "successful!!",
       data: response3

@@ -11,6 +11,7 @@ const xnxxMultiple = async (req, res) => {
     })
     let response = await pheaven.searchdl(text)
     return await res.status(200).send({
+      status:200,
       creator: global.creator,
       response: "successful!!",
       data: response
@@ -35,6 +36,7 @@ const xnxxSingle = async (req, res) => {
     })
     let response = await pheaven.searchdlsingle(text)
     return await res.status(200).send({
+      status:200,
       creator: global.creator,
       response: "successful!!",
       data: response
