@@ -6,6 +6,7 @@ const ytRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([a
 const ytVideo = async (req,res) => {
   try {
      let text = req.query.q
+     let quality = req.query.quality || "720p"
     if (!text) return res.status(404).send({
       status: 404,
       response: "failed!!",
@@ -18,7 +19,7 @@ const ytVideo = async (req,res) => {
       reason: "Please Provide A YouTube URL!!"
     });
     
-    let response = await ytdl.mp4(text)
+    let response = await ytdl.mp4(text,quality)
     
     return await res.status(200).send({
       status:200,
