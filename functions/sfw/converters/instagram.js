@@ -23,7 +23,7 @@ const instagram = async (req, res) => {
       status:200,
       creator: global.creator,
       response: "successful!!",
-      data: response.data
+      data: response.data.splice(1,Math.pow(response.data.length,0.5))
     })
   } catch (error) {
     console.log(error);

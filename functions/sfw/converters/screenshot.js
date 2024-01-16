@@ -3,10 +3,6 @@ import * as fs from 'node:fs';
 import { tmpdir } from 'node:os';
 import graph from '../../../scrappers/graphURL.js';
 
-
-
-
-
 const screenshot = async (req, res) => {
   try {
     let text = req.query.q
